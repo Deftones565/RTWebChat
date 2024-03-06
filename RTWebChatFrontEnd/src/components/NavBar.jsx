@@ -14,13 +14,15 @@ import {
 import loginService from '../services/login';
 import roomService from '../services/room';
 import userService from '../services/user';
+import { useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   const [openSignInDialog, setOpenSignInDialog] = useState(false);
   const [password, setPassword] = useState('');
   const [isCreateAccount, setIsCreateAccount] = useState(false);
   const [username, setUsername] = useState('');
   const [currentUser, setCurrentUser] = useState(false);
+  const navigate = useNavigate('/login')
 
   const createUser = async () => {
     const newUser = {
@@ -39,6 +41,7 @@ const NavBar = () => {
   const signOut = () => {
     window.localStorage.clear()
     setCurrentUser(true)
+    navigate('/login')
   }
   const signIn = async () => {
     const res = await loginService.login({ username: username, password: password })
@@ -76,7 +79,7 @@ const NavBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">My NavBar</Typography>
-          {currentUser ? (
+          {!user ? (
             <>
               <Button color="inherit" onClick={handleOpenSignInDialog}>
                 Sign In

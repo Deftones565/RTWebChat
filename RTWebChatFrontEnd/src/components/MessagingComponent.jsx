@@ -5,76 +5,118 @@ import NavBar from './NavBar';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
 import { useParams } from 'react-router-dom'
+import { useWhatChanged } from '@simbathesailor/use-what-changed';
 
-const MessagingComponent = () => {
+
+const MessagingComponent = ({ user }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const bottomRef = useRef(null);
   const socket = useRef(null);
   const { id } = useParams();
 
+
+  useWhatChanged([id, user])
+
   useEffect(() => {
-    const newSocket = new WebSocket(`ws://127.0.0.1:8080`);
-    socket.current = newSocket;
+
+    if (user) {
+      try {
+        // Check if the user is already connected
+        if (!socket.current || socket.current.readyState !== WebSocket.OPEN) {
+          const newSocket = new WebSocket(`ws://127.0.0.1:8080`, [user]);
+          socket.current = newSocket;
+
+          newSocket.addEventListener('error', (event) => {
+            console.error('WebSocket Error:', event);
+          });
+
+          newSocket.addEventListener('open', () => {
+            console.log('WebSocket Connection Open');
+            if (newSocket && newSocket.readyState === WebSocket.OPEN) {
+              console.log('this happened');
+              newSocket.send(JSON.stringify({ 'join': id }));
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error initializing WebSocket:', error);
+      }
+    }
 
     return () => {
       if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-        socket.current.close();
+        console.log('umount brah')
+        //socket.current.close();
       }
-    };
-  }, [socket]);
+    }
+  }, [id, user]);
 
+  useWhatChanged([id, user])
   // Handle messages from the server
   useEffect(() => {
-    if (socket.current) {
-      console.log(`id is ${id}`)
+    if (user) {
+      if (socket.current) {
+        console.log(`id is ${id}`)
+        socket.current.addEventListener('open', () => {
+          console.log('WebSocket Connection Open')
+          if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+            console.log('this happened')
+            socket.current.send(JSON.stringify({ 'join': id }));
+          }
+        })
 
-      socket.current.addEventListener('open', () => {
-        console.log('WebSocket Connection Open')
-        if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-          console.log('this happened')
-          socket.current.send(JSON.stringify({ 'join': id }));
+        const handleSocketClose = (event) => {
+          console.log('WebSocket closed with code:', event.code, 'and reason:', event.reason);
+          console.log('Full close event:', event);
+        };
+
+        const handleSocketMessage = (event) => {
+          console.log('Received message from server:', event.data);
+          console.log(typeof event.data);
+
+          try {
+            const parsedResult = JSON.parse(event.data);
+            setMessages((oldMessages) => [...oldMessages, parsedResult]);
+          } catch (error) {
+            console.error('Error parsing received JSON:', error);
+          }
+        };
+
+
+        const handleSocketError = (event) => {
+          console.error('WebSocket error:', event);
+        };
+
+        socket.current.addEventListener('message', handleSocketMessage);
+        socket.current.addEventListener('error', handleSocketError);
+        socket.current.addEventListener('close', handleSocketClose);
+        return () => {
+          // Cleanup: remove event listeners when the component unmounts
+          socket.current.removeEventListener('message', handleSocketMessage);
+          socket.current.removeEventListener('error', handleSocketError);
+          socket.current.removeEventListener('close', handleSocketClose); // Add this line
+          if (socket.current.readyState === WebSocket.OPEN) {
+            console.log('Component is unmounting');
+            socket.current.close();
+          }
         }
-      })
-
-      const handleSocketMessage = (event) => {
-        console.log('Received message from server:', event.data);
-        console.log(typeof event.data);
-
-        try {
-          const parsedResult = JSON.parse(event.data);
-          setMessages((oldMessages) => [...oldMessages, parsedResult]);
-        } catch (error) {
-          console.error('Error parsing received JSON:', error);
-        }
-      };
-
-
-      const handleSocketError = (event) => {
-        console.error('WebSocket error:', event);
-      };
-
-      socket.current.addEventListener('message', handleSocketMessage);
-      socket.current.addEventListener('error', handleSocketError);
-
-      return () => {
-        // Cleanup: remove event listeners when the component unmounts
-        socket.current.removeEventListener('message', handleSocketMessage);
-        socket.current.removeEventListener('error', handleSocketError);
-        if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-          socket.current.close();
-        }
-      };
+      }
     }
-  }, [socket.current, id]);
+  }, [user, id]);
 
 
   // Send messages to the server
   const sendMessage = (message) => {
-    if (socket.current) {
-      socket.current.send(JSON.stringify({ message }));
+    if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+      try {
+        socket.current.send(JSON.stringify({ message }));
+      } catch (error) {
+        console.error('Error sending message:', error);
+      }
     }
-  }
+  };
+
 
   useEffect(() => {
     if (socket.current && bottomRef.current) {
@@ -131,9 +173,16 @@ const MessagingComponent = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+  if (!user) {
+    console.log(user)
+    return (
+      <div>loading</div>
+    )
+  }
+
   return (
     <Paper {...getRootProps()}>
-      <NavBar />
+      <NavBar user={user} />
       {isDragActive ? <input {...getInputProps()} /> : null}
       <MessageList messages={messages} />
       <div ref={bottomRef} />

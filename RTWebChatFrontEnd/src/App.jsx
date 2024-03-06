@@ -4,29 +4,43 @@ import { Route, Routes } from 'react-router-dom'
 import FriendsList from './components/FriendsList';
 import { useEffect, useState } from 'react';
 import roomService from './services/room'
+import SignInForm from './components/SignInForm';
 
 
 function App() {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedChatAppUser')
-    if (loggedUserJSON) {
-      const loggedUser = JSON.parse(loggedUserJSON)
-      setUser(loggedUser)
-      roomService.setToken(user.token)
-    }
-  }, [])
+    const fetchUser = async () => {
+      const loggedUserJSON = window.localStorage.getItem('loggedChatAppUser');
+      if (loggedUserJSON) {
+        const loggedUser = JSON.parse(loggedUserJSON);
+        console.log(loggedUser);
+        setUser(loggedUser);
+        roomService.setToken(loggedUser);
+      }
+      setLoading(false);
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <Container>
-      <Routes>
-        <Route path='/' element={<MessagingComponent></MessagingComponent>}></Route>
-        <Route path='/friends' element={<FriendsList></FriendsList>} />
-        <Route path='/friends/:id' element={<MessagingComponent></MessagingComponent>}></Route>
-      </Routes>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Routes>
+          <Route path='/' element={<FriendsList />}></Route>
+          <Route path='/friends' element={<FriendsList />}></Route>
+          <Route path='/friends/:id' element={<MessagingComponent user={user}/>}></Route>
+          <Route path='/login' element={<SignInForm setLoading={setLoading}/>}></Route>
+        </Routes>
+      )}
     </Container>
   );
 }
 
 export default App;
+
