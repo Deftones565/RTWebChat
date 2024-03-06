@@ -3,7 +3,7 @@
   - Allow users to join different chat rooms. ✅ 
 
 - User Authentication
-  - Add user authentication to secure the chat.
+  - Add user authentication to secure the chat. ✅
   - Ensure that only authenticated users can send messages.
   - Store user information securely.
 
