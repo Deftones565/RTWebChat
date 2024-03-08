@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import NavBar from './NavBar';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
@@ -8,15 +8,15 @@ import { useParams } from 'react-router-dom'
 import { useWhatChanged } from '@simbathesailor/use-what-changed';
 
 
-const MessagingComponent = ({ user }) => {
+const MessagingComponent = ({ user, id }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const bottomRef = useRef(null);
   const socket = useRef(null);
-  const { id } = useParams();
 
 
-  useWhatChanged([id, user])
+
+  //useWhatChanged([id, user])
 
   useEffect(() => {
 
@@ -43,7 +43,7 @@ const MessagingComponent = ({ user }) => {
         console.error('Error initializing WebSocket:', error);
       }
     }
-
+  
     return () => {
       if (socket.current && socket.current.readyState === WebSocket.OPEN) {
         console.log('umount brah')
@@ -52,7 +52,7 @@ const MessagingComponent = ({ user }) => {
     }
   }, [id, user]);
 
-  useWhatChanged([id, user])
+  //useWhatChanged([id, user])
   // Handle messages from the server
   useEffect(() => {
     if (user) {
@@ -117,7 +117,6 @@ const MessagingComponent = ({ user }) => {
     }
   };
 
-
   useEffect(() => {
     if (socket.current && bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -174,25 +173,29 @@ const MessagingComponent = ({ user }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   if (!user) {
-    console.log(user)
     return (
       <div>loading</div>
     )
   }
 
   return (
-    <Paper {...getRootProps()}>
-      <NavBar user={user} />
-      {isDragActive ? <input {...getInputProps()} /> : null}
+    <Box {...getRootProps()} style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <NavBar user={user} />
+    {isDragActive ? <input {...getInputProps()} /> : null}
+    <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
       <MessageList messages={messages} />
-      <div ref={bottomRef} />
+      <Box ref={bottomRef} />
+    </Box>
+    <Box sx={{ flexShrink: 0 }}>
       <MessageInput
         message={message}
         onMessageChange={handleMessageChange}
         onSendMessage={handleSendMessage}
         onSendImage={onDrop}
       />
-    </Paper>
+    </Box>
+  </Box>
+  
   );
 };
 

@@ -20,7 +20,7 @@ const MessageInput = ({ message, onMessageChange, onSendMessage, onSendImage }) 
                 onSendMessage();
               }
             }}
-            label="Type a message"
+            label="Type a message"    
             fullWidth
           />
         </Grid>

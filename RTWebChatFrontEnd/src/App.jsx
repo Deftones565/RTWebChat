@@ -5,6 +5,7 @@ import FriendsList from './components/FriendsList';
 import { useEffect, useState } from 'react';
 import roomService from './services/room'
 import SignInForm from './components/SignInForm';
+import ChatPage from './components/ChatPage';
 
 
 function App() {
@@ -32,8 +33,7 @@ function App() {
         <div>Loading...</div>
       ) : (
         <Routes>
-          <Route path='/' element={<FriendsList />}></Route>
-          <Route path='/friends' element={<FriendsList />}></Route>
+          <Route path='/' element={<ChatPage user={user}/>}></Route>
           <Route path='/friends/:id' element={<MessagingComponent user={user}/>}></Route>
           <Route path='/login' element={<SignInForm setLoading={setLoading}/>}></Route>
         </Routes>
