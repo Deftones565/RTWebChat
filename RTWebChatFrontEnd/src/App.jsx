@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import roomService from './services/room'
 import SignInForm from './components/SignInForm';
 import ChatPage from './components/ChatPage';
+import CreateUserForm from './components/CreateUserForm';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path='/' element={<ChatPage user={user}/>}></Route>
           <Route path='/friends/:id' element={<MessagingComponent user={user}/>}></Route>
           <Route path='/login' element={<SignInForm setLoading={setLoading}/>}></Route>
+          <Route path='/create' element={<CreateUserForm setLoading={setLoading}></CreateUserForm>} />
         </Routes>
       )}
     </Container>

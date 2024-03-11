@@ -72,7 +72,7 @@ const createWebSocketServer = (httpServer) => {
         })
 
         // Handle messages from the client
-    });
+    }, console.log("WebSockets started"));
 }
 
 module.exports = {
