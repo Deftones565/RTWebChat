@@ -40,17 +40,16 @@ const FriendAvatar = styled(Avatar)({
     marginRight: '12px',
 });
 
-const FriendsList = ({ onFriendClick }) => {
-    const friends = [
-        { id: 1, name: 'Greg', avatar: '/path/to/avatar1.jpg' },
-        { id: 2, name: 'Bob', avatar: '/path/to/avatar2.jpg' },
-    ];
+const FriendsList = ({ onFriendClick, userList }) => {
+    const friends = userList
 
     const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredFriends = friends.filter((friend) =>
-        friend.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    //const filteredFriends = friends.filter((friend) =>
+    //    friend.name.toLowerCase().includes(searchQuery.toLowerCase())
+    //);
+
+    const filteredFriends = Object.values(friends).filter(item => item.username.toLowerCase().includes(searchQuery.toLowerCase()))
 
     return (
         <FriendsListContainer>
@@ -70,9 +69,9 @@ const FriendsList = ({ onFriendClick }) => {
                         }}
                     >
                         <ListItemAvatar>
-                            <FriendAvatar alt={friend.name} src={friend.avatar} />
+                            <FriendAvatar alt={friend.username} src={friend.avatar} />
                         </ListItemAvatar>
-                        <ListItemText primary={friend.name} />
+                        <ListItemText primary={friend.username} />
                     </FriendListItem>
                 ))}
             </FriendsListView>

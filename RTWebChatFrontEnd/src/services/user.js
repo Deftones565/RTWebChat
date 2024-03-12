@@ -9,8 +9,12 @@ const setToken = newToken => {
 
 const create = async newUser => {
     const response = await axios.post(baseUrl, newUser);
-    console.log(response.data)
     return response.data;
 }
 
-export default { create, setToken };
+const getUsers = async () => {
+	const response = await axios.get(baseUrl);
+	return response.data	
+}
+
+export default { create, setToken, getUsers };

@@ -43,7 +43,7 @@ const MessagingComponent = ({ user, id }) => {
         console.error('Error initializing WebSocket:', error);
       }
     }
-  
+
     return () => {
       if (socket.current && socket.current.readyState === WebSocket.OPEN) {
         console.log('umount brah')
@@ -128,32 +128,6 @@ const MessagingComponent = ({ user, id }) => {
     setMessage(event.target.value);
   };
 
-  const onDrop = useCallback(async (acceptedFiles) => {
-    for (const file of acceptedFiles) {
-      // File size limit
-      if (file.size > 2 * 1024 * 1024) {
-        alert('File is too large. Please select a file smaller than 2MB.');
-        continue;
-      }
-
-      // File type validation
-      if (!file.type.startsWith('image/')) {
-        alert('File is not an image. Please select an image file.');
-        continue;
-      }
-
-      try {
-        const dataUrl = await readAsDataURL(file);
-        const newMessage = { type: 'image', content: dataUrl, id: Date.now() };
-        setMessages((oldMessages) => [...oldMessages, newMessage]);
-        // Send the new image message through the WebSocket
-        sendMessage(newMessage);
-      } catch (error) {
-        alert('An error occurred while reading the file.');
-      }
-    }
-  }, []);
-
   const handleSendMessage = () => {
     if (message.trim() !== '') {
       const newMessage = { type: 'text', content: message, id: Date.now() };
@@ -170,8 +144,6 @@ const MessagingComponent = ({ user, id }) => {
   };
 
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
   if (!user) {
     return (
       <div>loading</div>
@@ -179,23 +151,21 @@ const MessagingComponent = ({ user, id }) => {
   }
 
   return (
-    <Box {...getRootProps()} style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-    <NavBar user={user} />
-    {isDragActive ? <input {...getInputProps()} /> : null}
-    <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
-      <MessageList messages={messages} />
-      <Box ref={bottomRef} />
+    <Box style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <NavBar user={user} />
+      <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+        <MessageList messages={messages} />
+        <Box ref={bottomRef} />
+      </Box>
+      <Box sx={{ flexShrink: 0 }}>
+        <MessageInput
+          message={message}
+          onMessageChange={handleMessageChange}
+          onSendMessage={handleSendMessage}
+        />
+      </Box>
     </Box>
-    <Box sx={{ flexShrink: 0 }}>
-      <MessageInput
-        message={message}
-        onMessageChange={handleMessageChange}
-        onSendMessage={handleSendMessage}
-        onSendImage={onDrop}
-      />
-    </Box>
-  </Box>
-  
+
   );
 };
 
