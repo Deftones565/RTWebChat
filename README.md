@@ -4,8 +4,10 @@
 
 - User Authentication
   - Add user authentication to secure the chat. ✅
-  - Ensure that only authenticated users can send messages.
-  - Store user information securely.
+  - Ensure that only authenticated users can send messages. ✅
+  - Store user information securely. ✅
+
+- Connect Rooms and Messages to backend
 
 - User Profiles
   - Create user profiles with display names and avatars.

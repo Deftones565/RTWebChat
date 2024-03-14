@@ -13,7 +13,8 @@ const getRoomMessagesById = async (id) => {
 }
 
 const createRoom = async (name, sender, users) => {
-    const response = await axios.post(`${baseUrl}create`, { name, sender, users });
+    const config = { headers: { Authorization: token } }
+    const response = await axios.post(`${baseUrl}create`, { name, sender, users }, config);
     return response.data;
 }
 
