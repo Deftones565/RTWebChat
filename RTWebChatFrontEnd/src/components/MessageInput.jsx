@@ -1,13 +1,11 @@
 import { Box, Button, Grid, TextField } from '@mui/material';
-import PhonePictureUpload from './PhonePictureUpload';
 
-const MessageInput = ({ message, onMessageChange, onSendMessage, onSendImage }) => {
+const MessageInput = ({ message, onMessageChange, onSendMessage }) => {
   return (
     <Box p={2}>
       <Grid container spacing={2} alignItems="flex-end">
         <Grid item xs={1} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Box sx={{ width: '40px', height: '40px' }}>
-            <PhonePictureUpload onDrop={onSendImage} />
           </Box>
         </Grid>
         <Grid item xs={8}>
@@ -20,7 +18,7 @@ const MessageInput = ({ message, onMessageChange, onSendMessage, onSendImage }) 
                 onSendMessage();
               }
             }}
-            label="Type a message"
+            label="Type a message"    
             fullWidth
           />
         </Grid>

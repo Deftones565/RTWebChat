@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField, Button, FormControl } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import loginService from '../services/login';
+import userService from '../services/user';
 
-const SignInForm = ({ setLoading }) => {
+const CreateUserForm = ({ setLoading }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(null);
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        const res = await loginService.login({ username, password });
+        const res = await userService.create({ username, password });
+        console.log(res.token);
         if (res.token) {
             window.localStorage.setItem('loggedChatAppUser', JSON.stringify(res.token));
             setIsLoggedIn(true);
@@ -26,7 +27,7 @@ const SignInForm = ({ setLoading }) => {
             setLoading(false);
             navigate('/');
         }
-    }, [setLoading, isLoggedIn, navigate]);
+    }, [isLoggedIn, navigate]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -51,11 +52,11 @@ const SignInForm = ({ setLoading }) => {
                     required
                 />
                 <Button variant="contained" color="primary" type="submit">
-                    Sign In
+                    Create User
                 </Button>
             </FormControl>
         </form>
     );
 };
 
-export default SignInForm;
+export default CreateUserForm;
