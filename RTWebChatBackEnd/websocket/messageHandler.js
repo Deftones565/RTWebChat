@@ -1,26 +1,41 @@
-const handleTextMessage = (ws, _, message, roomMap) => {
-    const room = ws.room;
-    console.log(`Received message: ${JSON.stringify(message)}`);
-    console.log(`Received message for room: ${room}`);
-    console.log(`Contents of roomMap when handling text message in room: ${room}`, roomMap);
+const Room = require('../models/room')
+const Message = require('../models/message')
 
-    if (roomMap.has(room)) {
-        const clientsInRoom = roomMap.get(room);
-        console.log(`Found room ${room} in roomMap`);
-        console.log(`Number of clients in room ${room}: ${clientsInRoom.size}`);
-        console.log(`Broadcasting messages to clients in room ${room}`);
+const handleTextMessage = async (ws, room, message, roomMap) => {
+    try {
+        console.log('this is room in handleTextMessage', room)
+        const roomDoc = await Room.findOne({ name: room });
+        if (!roomDoc) {
+            console.error(`Room "${room}" not found`);
+            return;
+        }
+
+        console.log('this is the message data', message.message.text)
+
+        const newMessage = new Message({
+            text: message.message.text,
+            sender: ws.user.id,
+        });
+        await newMessage.save();
+
+        roomDoc.messages.push(newMessage._id);
+        await roomDoc.save();
+
+        const messageSummary = {
+            text: newMessage.text,
+            sender: ws.user.username,
+            timestamp: newMessage.timestamp,
+        };
 
         roomMap.get(room).forEach((client) => {
-            console.log(`Checking client ${client._socket.remoteAddress}`);
-            if (client !== ws && client.readyState === ws.OPEN) {
-                console.log(`Broadcasting message to ${client._socket.remoteAddress}`);
-                client.send(JSON.stringify(message));
+            if (client !== ws && client.readyState === WebSocket.OPEN) {
+                client.send(JSON.stringify(messageSummary));
             }
         });
-        console.log(`Finished broadcasting messages`);
+    } catch (err) {
+        console.error("Error handling text message:", err);
     }
 };
-
 module.exports = {
     handleTextMessage,
 };

@@ -17,12 +17,12 @@ const MessageList = ({ messages }) => {
           <CardMedia
             key={message.id}
             component="img"
-            image={message.content}
+            image={message.text}
             alt="Uploaded"
             sx={{ maxWidth: '100%', maxHeight: '500px', height: 'auto', width: 'auto' }}
           />
         ) : (
-          <Chip key={message.id} label={`${message.content}`} />
+          <Chip key={message.id} label={`${message.text}`} />
         );
       })}
     </Box>

@@ -6,13 +6,23 @@ const userExtractor = require('../utils/middleware').userExtractor
 
 roomRouter.get('/:id', userExtractor, async (request, response) => {
     try {
-        const room = await Room.findById(request.params.id).populate({ path: 'messages' });
+        console.log('this is request.params.id', request.params.id)
+        const room = await Room.find({name: request.params.id}).populate({ path: 'messages' });
         response.json(room);
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+roomRouter.get('/', async (request, response) => {
+    try{
+        const rooms = await Room.find({})
+        response.json(rooms)
+    } catch(error) {
+        console.log(error)
+    }
+})
 
 roomRouter.post('/create', userExtractor, async (request, response) => {
     try {
