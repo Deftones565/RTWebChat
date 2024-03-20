@@ -17,7 +17,7 @@ const ChatPage = ({ user }) => {
     useEffect(() => {
         // Fetch the user list if the user is logged in
         const loadUserList = async () => {
-            if (user) {
+            if (user.token) {
                 try {
                     const users = await userService.getUsers();
                     setUserList(users);
@@ -36,11 +36,11 @@ const ChatPage = ({ user }) => {
             }
         };
         loadUserList();
-    }, [user, navigate]);
+    }, [user.token, navigate]);
 
     return (
         <Container style={{ display: "flex", height: "100vh" }}>
-            {!userList || !user ? (
+            {!userList || !user.token ? (
                 <Box
                     display="flex"
                     justifyContent="center"

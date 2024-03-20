@@ -41,6 +41,7 @@ const NavBar = ({ user }) => {
   const signOut = () => {
     window.localStorage.clear()
     setCurrentUser(true)
+    window.location.reload();
     navigate('/login')
   }
   const signIn = async () => {
@@ -79,7 +80,7 @@ const NavBar = ({ user }) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">My NavBar</Typography>
-          {!user ? (
+          {user.token ? (
             <>
               <Button color="inherit" onClick={handleOpenSignInDialog}>
                 Sign In

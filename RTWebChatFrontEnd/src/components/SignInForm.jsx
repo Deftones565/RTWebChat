@@ -13,6 +13,7 @@ const SignInForm = ({ setLoading }) => {
         const res = await loginService.login({ username, password });
         if (res.token) {
             window.localStorage.setItem('loggedChatAppUser', JSON.stringify(res.token));
+            window.localStorage.setItem('username', JSON.stringify(res.username))
             setIsLoggedIn(true);
         } else {
             console.log('no token');

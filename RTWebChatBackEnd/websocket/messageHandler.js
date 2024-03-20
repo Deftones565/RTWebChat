@@ -28,7 +28,7 @@ const handleTextMessage = async (ws, room, message, roomMap) => {
         };
 
         roomMap.get(room).forEach((client) => {
-            if (client !== ws && client.readyState === WebSocket.OPEN) {
+            if (client !== ws) {
                 client.send(JSON.stringify(messageSummary));
             }
         });

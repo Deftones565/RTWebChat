@@ -4,7 +4,9 @@ const handleJoinRoom = async (ws, currentRoom, newRoom, roomMap) => {
    try {
       if (ws.room) {
          const currentRoomDoc = await Room.findOne({ name: ws.room })
-         currentRoomDoc.users = currentRoomDoc.users.filter(user => user.toString()) !== ws.user._id.toString()
+         console.log('currentUserDoc before the users bit', currentRoomDoc)
+         currentRoomDoc.users = currentRoomDoc.users.filter(user => user.toString()) !== ws.user.id.toString()
+         console.log('currentUserDoc after the users bit', currentRoomDoc)
          await currentRoomDoc.save()
          roomMap.get(ws.room).delete(ws)
       }

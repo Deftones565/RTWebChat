@@ -578,13 +578,15 @@
 @vitest/utils	RTWebChatFrontEnd/package-lock.json	/^        "@vitest\/utils": "1.3.1",$/;"	s	object:packages.node_modules/vitest.dependencies
 AnonymousFunction166bb5060100	RTWebChatFrontEnd/src/components/MessagingComponent.test.jsx	/^    window.HTMLElement.prototype.scrollIntoView = function () { };$/;"	f
 App	RTWebChatFrontEnd/src/App.jsx	/^function App() {$/;"	f
-ChatPage	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^const ChatPage = ({ user, userList }) => {$/;"	C
+Authorization	RTWebChatFrontEnd/src/services/room.js	/^    const config = { headers: { Authorization: token } }$/;"	p	class:config.headers
+Authorization	RTWebChatFrontEnd/src/services/user.js	/^    const config = { headers: { Authorization: token } };$/;"	p	class:config.headers
+ChatPage	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^const ChatPage = ({ user }) => {$/;"	C
 CreateUserForm	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^const CreateUserForm = ({ setLoading }) => {$/;"	C
 FriendAvatar	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendAvatar = styled(Avatar)({$/;"	C
 FriendListItem	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendListItem = styled(ListItem)({$/;"	C
 FriendsList	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendsList = ({ onFriendClick, userList }) => {$/;"	C
-FriendsListContainer	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendsListContainer = styled('div')({$/;"	C
-FriendsListHeader	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendsListHeader = styled('div')({$/;"	C
+FriendsListContainer	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendsListContainer = styled("div")({$/;"	C
+FriendsListHeader	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendsListHeader = styled("div")({$/;"	C
 FriendsListView	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^const FriendsListView = styled(List)({$/;"	C
 IconifyId1813088fe1fbc01fb466	RTWebChatFrontEnd/public/vite.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="http:\/\/www.w3.org\/1999\/xlink" aria-/;"	d
 IconifyId1813088fe1fbc01fb466	RTWebChatFrontEnd/public/vite.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="http:\/\/www.w3.org\/1999\/xlink" aria-/;"	i
@@ -593,6 +595,7 @@ IconifyId1813088fe1fbc01fb467	RTWebChatFrontEnd/public/vite.svg	/^<svg xmlns="ht
 MONGODB_URI	RTWebChatBackEnd/utils/config.js	/^    MONGODB_URI,$/;"	M	class:module.exports
 MONGODB_URI	RTWebChatBackEnd/utils/config.js	/^const MONGODB_URI = process.env.MONGODB_URI$/;"	C
 Message	RTWebChatBackEnd/controllers/room.js	/^const Message = require('..\/models\/message');$/;"	C
+Message	RTWebChatBackEnd/websocket/messageHandler.js	/^const Message = require('..\/models\/message')$/;"	C
 MessageInput	RTWebChatFrontEnd/src/components/MessageInput.jsx	/^const MessageInput = ({ message, onMessageChange, onSendMessage }) => {$/;"	C
 MessageList	RTWebChatFrontEnd/src/components/MessageList.jsx	/^const MessageList = ({ messages }) => {$/;"	C
 MessagingComponent	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^const MessagingComponent = ({ user, id }) => {$/;"	C
@@ -600,6 +603,8 @@ NavBar	RTWebChatFrontEnd/src/components/NavBar.jsx	/^const NavBar = ({ user }) =
 PhonePictureUpload	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^const PhonePictureUpload = ({ onDrop }) => {$/;"	C
 React + Vite	RTWebChatFrontEnd/README.md	/^# React + Vite$/;"	c
 Room	RTWebChatBackEnd/controllers/room.js	/^const Room = require('..\/models\/room')$/;"	C
+Room	RTWebChatBackEnd/websocket/messageHandler.js	/^const Room = require('..\/models\/room')$/;"	C
+Room	RTWebChatBackEnd/websocket/roomHandler.js	/^const Room = require('..\/models\/room')$/;"	C
 SignInForm	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^const SignInForm = ({ setLoading }) => {$/;"	C
 User	RTWebChatBackEnd/controllers/login.js	/^const User = require('..\/models\/user')$/;"	C
 User	RTWebChatBackEnd/controllers/users.js	/^const User = require('..\/models\/user');$/;"	C
@@ -707,8 +712,8 @@ babel-preset-jest	RTWebChatFrontEnd/package-lock.json	/^        "babel-preset-je
 balanced-match	RTWebChatBackEnd/package-lock.json	/^        "balanced-match": "^1.0.0",$/;"	s	object:packages.node_modules/brace-expansion.dependencies
 balanced-match	RTWebChatFrontEnd/package-lock.json	/^        "balanced-match": "^1.0.0",$/;"	s	object:packages.node_modules/brace-expansion.dependencies
 baseUrl	RTWebChatFrontEnd/src/services/login.js	/^const baseUrl = '\/api\/login';$/;"	C
-baseUrl	RTWebChatFrontEnd/src/services/room.js	/^const baseUrl = '\/api\/room\/';$/;"	C
-baseUrl	RTWebChatFrontEnd/src/services/user.js	/^const baseUrl = '\/api\/users\/';$/;"	C
+baseUrl	RTWebChatFrontEnd/src/services/room.js	/^const baseUrl = '\/api\/rooms\/';$/;"	C
+baseUrl	RTWebChatFrontEnd/src/services/user.js	/^const baseUrl = "\/api\/users\/";$/;"	C
 bcrypt	RTWebChatBackEnd/controllers/login.js	/^const bcrypt = require('bcrypt');$/;"	C
 bcrypt	RTWebChatBackEnd/controllers/users.js	/^const bcrypt = require('bcrypt');$/;"	C
 bcrypt	RTWebChatBackEnd/package-lock.json	/^        "bcrypt": "^5.1.1",$/;"	s	object:packages..dependencies
@@ -720,6 +725,7 @@ bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.no
 bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/mkdirp
 bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/nodemon
 bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/nopt
+bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/prettier
 bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/rimraf
 bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/semver
 bin	RTWebChatBackEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/touch
@@ -747,6 +753,7 @@ bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.n
 bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/make-dir/node_modules/semver
 bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/nanoid
 bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/node-gyp-build
+bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/prettier
 bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/resolve
 bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/rimraf
 bin	RTWebChatFrontEnd/package-lock.json	/^      "bin": {$/;"	o	object:packages.node_modules/rollup
@@ -865,7 +872,6 @@ ci-info	RTWebChatFrontEnd/package-lock.json	/^        "ci-info": "^3.2.0",$/;"	s
 ci-info	RTWebChatFrontEnd/package-lock.json	/^        "ci-info": "^3.2.0",$/;"	s	object:packages.node_modules/jest-config.dependencies
 ci-info	RTWebChatFrontEnd/package-lock.json	/^        "ci-info": "^3.2.0",$/;"	s	object:packages.node_modules/jest-util.dependencies
 cjs-module-lexer	RTWebChatFrontEnd/package-lock.json	/^        "cjs-module-lexer": "^1.0.0",$/;"	s	object:packages.node_modules/jest-runtime.dependencies
-clientsInRoom	RTWebChatBackEnd/websocket/messageHandler.js	/^        const clientsInRoom = roomMap.get(room);$/;"	C
 cliui	RTWebChatFrontEnd/package-lock.json	/^        "cliui": "^8.0.1",$/;"	s	object:packages.node_modules/yargs.dependencies
 clsx	RTWebChatFrontEnd/package-lock.json	/^        "clsx": "^2.1.0",$/;"	s	object:packages.node_modules/@mui/base.dependencies
 clsx	RTWebChatFrontEnd/package-lock.json	/^        "clsx": "^2.1.0",$/;"	s	object:packages.node_modules/@mui/material.dependencies
@@ -933,9 +939,11 @@ concat-map	RTWebChatBackEnd/package-lock.json	/^        "concat-map": "0.0.1"$/;
 concat-map	RTWebChatFrontEnd/package-lock.json	/^        "concat-map": "0.0.1"$/;"	s	object:packages.node_modules/brace-expansion.dependencies
 config	RTWebChatBackEnd/app.js	/^const config = require('.\/utils\/config')$/;"	C
 config	RTWebChatBackEnd/index.js	/^const config = require('.\/utils\/config');$/;"	C
+config	RTWebChatFrontEnd/src/services/room.js	/^    const config = { headers: { Authorization: token } }$/;"	c
+config	RTWebChatFrontEnd/src/services/user.js	/^    const config = { headers: { Authorization: token } };$/;"	c
+connectWebSocket	RTWebChatFrontEnd/src/services/websockets.js	/^const connectWebSocket = (user, room, setMessages) => {$/;"	C
 console-control-strings	RTWebChatBackEnd/package-lock.json	/^        "console-control-strings": "^1.0.0",$/;"	s	object:packages.node_modules/gauge.dependencies
 console-control-strings	RTWebChatBackEnd/package-lock.json	/^        "console-control-strings": "^1.1.0",$/;"	s	object:packages.node_modules/npmlog.dependencies
-content	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { type: 'text', content: message, id: Date.now() };$/;"	p	class:newMessage
 content-disposition	RTWebChatBackEnd/package-lock.json	/^        "content-disposition": "0.5.4",$/;"	s	object:packages.node_modules/express.dependencies
 content-type	RTWebChatBackEnd/package-lock.json	/^        "content-type": "~1.0.4",$/;"	s	object:packages.node_modules/body-parser.dependencies
 content-type	RTWebChatBackEnd/package-lock.json	/^        "content-type": "~1.0.4",$/;"	s	object:packages.node_modules/express.dependencies
@@ -985,7 +993,7 @@ cpu	RTWebChatFrontEnd/package-lock.json	/^      "cpu": [$/;"	a	object:packages.n
 cpu	RTWebChatFrontEnd/package-lock.json	/^      "cpu": [$/;"	a	object:packages.node_modules/@rollup/rollup-win32-arm64-msvc
 cpu	RTWebChatFrontEnd/package-lock.json	/^      "cpu": [$/;"	a	object:packages.node_modules/@rollup/rollup-win32-ia32-msvc
 cpu	RTWebChatFrontEnd/package-lock.json	/^      "cpu": [$/;"	a	object:packages.node_modules/@rollup/rollup-win32-x64-msvc
-create	RTWebChatFrontEnd/src/services/user.js	/^const create = async newUser => {$/;"	C
+create	RTWebChatFrontEnd/src/services/user.js	/^const create = async (newUser) => {$/;"	C
 create-jest	RTWebChatFrontEnd/package-lock.json	/^        "create-jest": "^29.7.0",$/;"	s	object:packages.node_modules/jest-cli.dependencies
 create-jest	RTWebChatFrontEnd/package-lock.json	/^        "create-jest": "bin\/create-jest.js"$/;"	s	object:packages.node_modules/create-jest.bin
 createRoom	RTWebChatFrontEnd/src/services/room.js	/^const createRoom = async (name, sender, users) => {$/;"	C
@@ -1003,6 +1011,7 @@ csstype	RTWebChatFrontEnd/package-lock.json	/^        "csstype": "^3.0.2"$/;"	s	
 csstype	RTWebChatFrontEnd/package-lock.json	/^        "csstype": "^3.1.2",$/;"	s	object:packages.node_modules/@mui/material.dependencies
 csstype	RTWebChatFrontEnd/package-lock.json	/^        "csstype": "^3.1.2",$/;"	s	object:packages.node_modules/@mui/styled-engine.dependencies
 csstype	RTWebChatFrontEnd/package-lock.json	/^        "csstype": "^3.1.2",$/;"	s	object:packages.node_modules/@mui/system.dependencies
+currentRoomDoc	RTWebChatBackEnd/websocket/roomHandler.js	/^         const currentRoomDoc = await Room.findOne({ name: ws.room })$/;"	C
 data-urls	RTWebChatFrontEnd/package-lock.json	/^        "data-urls": "^5.0.0",$/;"	s	object:packages.node_modules/jsdom.dependencies
 debug	RTWebChatBackEnd/package-lock.json	/^        "debug": "2.6.9",$/;"	s	object:packages.node_modules/body-parser.dependencies
 debug	RTWebChatBackEnd/package-lock.json	/^        "debug": "2.6.9",$/;"	s	object:packages.node_modules/express.dependencies
@@ -2340,6 +2349,7 @@ engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:pac
 engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/parseurl
 engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/path-is-absolute
 engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/picomatch
+engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/prettier
 engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/proxy-addr
 engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/punycode
 engines	RTWebChatBackEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/qs
@@ -2842,6 +2852,7 @@ engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:pa
 engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/pkg-dir/node_modules/p-locate
 engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/postcss
 engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/prelude-ls
+engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/prettier
 engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/pretty-format
 engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/pretty-format/node_modules/ansi-styles
 engines	RTWebChatFrontEnd/package-lock.json	/^      "engines": {$/;"	o	object:packages.node_modules/prompts
@@ -3042,7 +3053,6 @@ fileInputRef	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^        r
 fileInputRef	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^  const fileInputRef = useRef(null);$/;"	C
 fill-range	RTWebChatBackEnd/package-lock.json	/^        "fill-range": "^7.0.1"$/;"	s	object:packages.node_modules/braces.dependencies
 fill-range	RTWebChatFrontEnd/package-lock.json	/^        "fill-range": "^7.0.1"$/;"	s	object:packages.node_modules/braces.dependencies
-filteredFriends	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^    const filteredFriends = friends.filter((friend) =>$/;"	C
 finalhandler	RTWebChatBackEnd/package-lock.json	/^        "finalhandler": "1.2.0",$/;"	s	object:packages.node_modules/express.dependencies
 find-root	RTWebChatFrontEnd/package-lock.json	/^        "find-root": "^1.1.0",$/;"	s	object:packages.node_modules/@emotion/babel-plugin.dependencies
 find-up	RTWebChatFrontEnd/package-lock.json	/^        "find-up": "^4.0.0"$/;"	s	object:packages.node_modules/pkg-dir.dependencies
@@ -3060,7 +3070,7 @@ form-data	RTWebChatFrontEnd/package-lock.json	/^        "form-data": "^4.0.0",$/
 forwarded	RTWebChatBackEnd/package-lock.json	/^        "forwarded": "0.2.0",$/;"	s	object:packages.node_modules/proxy-addr.dependencies
 fresh	RTWebChatBackEnd/package-lock.json	/^        "fresh": "0.5.2",$/;"	s	object:packages.node_modules/express.dependencies
 fresh	RTWebChatBackEnd/package-lock.json	/^        "fresh": "0.5.2",$/;"	s	object:packages.node_modules/send.dependencies
-friends	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^    const friends = userList$/;"	C
+friends	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^  const friends = userList;$/;"	C
 fs-minipass	RTWebChatBackEnd/package-lock.json	/^        "fs-minipass": "^2.0.0",$/;"	s	object:packages.node_modules/tar.dependencies
 fs.realpath	RTWebChatBackEnd/package-lock.json	/^        "fs.realpath": "^1.0.0",$/;"	s	object:packages.node_modules/glob.dependencies
 fs.realpath	RTWebChatFrontEnd/package-lock.json	/^        "fs.realpath": "^1.0.0",$/;"	s	object:packages.node_modules/glob.dependencies
@@ -3097,6 +3107,7 @@ funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:pac
 funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/nodemon
 funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/object-inspect
 funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/picomatch
+funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/prettier
 funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/qs
 funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/rimraf
 funding	RTWebChatBackEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/side-channel
@@ -3278,6 +3289,7 @@ funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:pa
 funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/parse5
 funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/picomatch
 funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/pkg-dir/node_modules/p-limit
+funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/prettier
 funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/pretty-format/node_modules/ansi-styles
 funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/reflect.getprototypeof
 funding	RTWebChatFrontEnd/package-lock.json	/^      "funding": {$/;"	o	object:packages.node_modules/regexp.prototype.flags
@@ -3403,8 +3415,8 @@ handleFileChange	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^     
 handleFileChange	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^  const handleFileChange = (event) => {$/;"	C
 handleFileInputClick	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^  const handleFileInputClick = () => {$/;"	C
 handleFriendClick	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^    const handleFriendClick = (friend) => {$/;"	C
-handleJoinRoom	RTWebChatBackEnd/websocket/roomHandler.js	/^    handleJoinRoom,$/;"	M	class:module.exports
-handleJoinRoom	RTWebChatBackEnd/websocket/roomHandler.js	/^const handleJoinRoom = (ws, currentRoom, newRoom, roomMap) => {$/;"	C
+handleJoinRoom	RTWebChatBackEnd/websocket/roomHandler.js	/^   handleJoinRoom,$/;"	M	class:module.exports
+handleJoinRoom	RTWebChatBackEnd/websocket/roomHandler.js	/^const handleJoinRoom = async (ws, currentRoom, newRoom, roomMap) => {$/;"	C
 handleLogin	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^    const handleLogin = async () => {$/;"	C
 handleLogin	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^    const handleLogin = async () => {$/;"	C
 handleMessageChange	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^          onMessageChange={handleMessageChange}$/;"	M	class:onMessageChange
@@ -3418,7 +3430,7 @@ handleSubmit	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^    const han
 handleSubmit	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^        <form onSubmit={handleSubmit}>$/;"	M	class:AnonymousClassa28e0ec30101
 handleSubmit	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^    const handleSubmit = (event) => {$/;"	C
 handleTextMessage	RTWebChatBackEnd/websocket/messageHandler.js	/^    handleTextMessage,$/;"	M	class:module.exports
-handleTextMessage	RTWebChatBackEnd/websocket/messageHandler.js	/^const handleTextMessage = (ws, _, message, roomMap) => {$/;"	C
+handleTextMessage	RTWebChatBackEnd/websocket/messageHandler.js	/^const handleTextMessage = async (ws, room, message, roomMap) => {$/;"	C
 happy-dom	RTWebChatFrontEnd/package-lock.json	/^        "happy-dom": "*",$/;"	s	object:packages.node_modules/vitest.peerDependencies
 happy-dom	RTWebChatFrontEnd/package-lock.json	/^        "happy-dom": {$/;"	o	object:packages.node_modules/vitest.peerDependenciesMeta
 has-bigints	RTWebChatFrontEnd/package-lock.json	/^        "has-bigints": "^1.0.1"$/;"	s	object:packages.node_modules/is-bigint.dependencies
@@ -3501,6 +3513,8 @@ hasown	RTWebChatFrontEnd/package-lock.json	/^        "hasown": "^2.0.0"$/;"	s	ob
 hasown	RTWebChatFrontEnd/package-lock.json	/^        "hasown": "^2.0.0"$/;"	s	object:packages.node_modules/is-core-module.dependencies
 hasown	RTWebChatFrontEnd/package-lock.json	/^        "hasown": "^2.0.0",$/;"	s	object:packages.node_modules/es-abstract.dependencies
 hasown	RTWebChatFrontEnd/package-lock.json	/^        "hasown": "^2.0.0",$/;"	s	object:packages.node_modules/internal-slot.dependencies
+headers	RTWebChatFrontEnd/src/services/room.js	/^    const config = { headers: { Authorization: token } }$/;"	c	class:config
+headers	RTWebChatFrontEnd/src/services/user.js	/^    const config = { headers: { Authorization: token } };$/;"	c	class:config
 hoist-non-react-statics	RTWebChatFrontEnd/package-lock.json	/^        "hoist-non-react-statics": "^3.3.1"$/;"	s	object:packages.node_modules/@emotion/react.dependencies
 html-encoding-sniffer	RTWebChatFrontEnd/package-lock.json	/^        "html-encoding-sniffer": "^4.0.0",$/;"	s	object:packages.node_modules/jsdom.dependencies
 html-escaper	RTWebChatFrontEnd/package-lock.json	/^        "html-escaper": "^2.0.0",$/;"	s	object:packages.node_modules/istanbul-reports.dependencies
@@ -3518,7 +3532,7 @@ human-signals	RTWebChatFrontEnd/package-lock.json	/^        "human-signals": "^5
 iconv-lite	RTWebChatBackEnd/package-lock.json	/^        "iconv-lite": "0.4.24",$/;"	s	object:packages.node_modules/body-parser.dependencies
 iconv-lite	RTWebChatBackEnd/package-lock.json	/^        "iconv-lite": "0.4.24",$/;"	s	object:packages.node_modules/raw-body.dependencies
 iconv-lite	RTWebChatFrontEnd/package-lock.json	/^        "iconv-lite": "0.6.3"$/;"	s	object:packages.node_modules/whatwg-encoding.dependencies
-id	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { type: 'text', content: message, id: Date.now() };$/;"	p	class:newMessage
+id	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { text: message, timestamp: Date.now(), id: Date.now()};$/;"	p	class:newMessage
 ignore	RTWebChatFrontEnd/package-lock.json	/^        "ignore": "^5.2.0",$/;"	s	object:packages.node_modules/@eslint/eslintrc.dependencies
 ignore	RTWebChatFrontEnd/package-lock.json	/^        "ignore": "^5.2.0",$/;"	s	object:packages.node_modules/eslint.dependencies
 ignore-by-default	RTWebChatBackEnd/package-lock.json	/^        "ignore-by-default": "^1.0.1",$/;"	s	object:packages.node_modules/nodemon.dependencies
@@ -3548,6 +3562,7 @@ integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-2JAn3z
 integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-2lv\/66T7e5yNyhAAC4NaKe5nVavzuGJQVVtRYLyQ2OI8tsJ61PMLlelehb0wi2Hx6+hT/;"	s	object:packages.node_modules/tr46
 integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc\/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2/;"	s	object:packages.node_modules/destroy
 integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4/;"	s	object:packages.node_modules/minipass
+integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-3\/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAn/;"	s	object:packages.node_modules/prettier
 integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpW/;"	s	object:packages.node_modules/balanced-match
 integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv\/41Sn2emQ0dycQW4uZXLejwKv/;"	s	object:packages.node_modules/yallist
 integrity	RTWebChatBackEnd/package-lock.json	/^      "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvN/;"	s	object:packages.node_modules/is-number
@@ -3773,6 +3788,7 @@ integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-36yxD
 integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3CRkr9+vCV2XJbjwgzjPtO8T0SZUmRZla+UL1jw+XqHZPkPgZiyWvbDvl9rqAN8Zl7qJF/;"	s	object:packages.node_modules/@esbuild/linux-arm
 integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3E1nCMgipcTkCocFwM90XXQab9bS+GMsjdpmPrlelaxwD93Ad8iVEjX\/vvHPdLPnFf+L/;"	s	object:packages.node_modules/jest-circus
 integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA/;"	s	object:packages.node_modules/@humanwhocodes/config-array
+integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3\/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAn/;"	s	object:packages.node_modules/prettier
 integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3f0uOEAQwIqGuWW2MVzYg8fV\/QNnc\/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3k/;"	s	object:packages.node_modules/tmpl
 integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo\/TlYz6eQi/;"	s	object:packages.node_modules/gensync
 integrity	RTWebChatFrontEnd/package-lock.json	/^      "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpW/;"	s	object:packages.node_modules/balanced-match
@@ -4846,6 +4862,7 @@ lodash.isstring	RTWebChatBackEnd/package-lock.json	/^        "lodash.isstring": 
 lodash.merge	RTWebChatBackEnd/package-lock.json	/^        "lodash.merge": "^4.6.2"$/;"	s	object:packages.node_modules/mongoose-unique-validator.dependencies
 lodash.merge	RTWebChatFrontEnd/package-lock.json	/^        "lodash.merge": "^4.6.2",$/;"	s	object:packages.node_modules/eslint.dependencies
 lodash.once	RTWebChatBackEnd/package-lock.json	/^        "lodash.once": "^4.0.0",$/;"	s	object:packages.node_modules/jsonwebtoken.dependencies
+log	RTWebChatBackEnd/websocket/messageHandler.js	/^        console.log('this is the message data', message.message.text)$/;"	v	class:console
 logger	RTWebChatBackEnd/app.js	/^const logger = require('.\/utils\/logger')$/;"	C
 logger	RTWebChatBackEnd/controllers/room.js	/^const logger = require('..\/utils\/logger')$/;"	C
 logger	RTWebChatBackEnd/controllers/users.js	/^const logger = require('..\/utils\/logger')$/;"	C
@@ -4884,6 +4901,7 @@ message	RTWebChatFrontEnd/src/components/MessageInput.jsx	/^            value={m
 message	RTWebChatFrontEnd/src/components/MessageInput.jsx	/^const MessageInput = ({ message, onMessageChange, onSendMessage }) => {$/;"	M	class:MessageInput
 message	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^          message={message}$/;"	M	class:message
 messageSchema	RTWebChatBackEnd/models/message.js	/^const messageSchema = new mongoose.Schema({$/;"	C
+messageSummary	RTWebChatBackEnd/websocket/messageHandler.js	/^        const messageSummary = {$/;"	c
 messages	RTWebChatFrontEnd/src/components/MessageList.jsx	/^const MessageList = ({ messages }) => {$/;"	M	class:MessageList
 methods	RTWebChatBackEnd/package-lock.json	/^        "methods": "~1.1.2",$/;"	s	object:packages.node_modules/express.dependencies
 micromatch	RTWebChatFrontEnd/package-lock.json	/^        "micromatch": "^4.0.4",$/;"	s	object:packages.node_modules/@jest/core.dependencies
@@ -4953,11 +4971,12 @@ nanoid	RTWebChatFrontEnd/package-lock.json	/^        "nanoid": "^3.3.7",$/;"	s	o
 nanoid	RTWebChatFrontEnd/package-lock.json	/^        "nanoid": "bin\/nanoid.cjs"$/;"	s	object:packages.node_modules/nanoid.bin
 natural-compare	RTWebChatFrontEnd/package-lock.json	/^        "natural-compare": "^1.4.0",$/;"	s	object:packages.node_modules/eslint.dependencies
 natural-compare	RTWebChatFrontEnd/package-lock.json	/^        "natural-compare": "^1.4.0",$/;"	s	object:packages.node_modules/jest-snapshot.dependencies
+navigate	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^    const navigate = useNavigate();$/;"	C
 navigate	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^    const navigate = useNavigate();$/;"	C
 navigate	RTWebChatFrontEnd/src/components/NavBar.jsx	/^  const navigate = useNavigate('\/login')$/;"	C
 navigate	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^    const navigate = useNavigate();$/;"	C
 negotiator	RTWebChatBackEnd/package-lock.json	/^        "negotiator": "0.6.3"$/;"	s	object:packages.node_modules/accepts.dependencies
-newMessage	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { type: 'text', content: message, id: Date.now() };$/;"	c
+newMessage	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { text: message, timestamp: Date.now(), id: Date.now()};$/;"	c
 newUser	RTWebChatFrontEnd/src/components/NavBar.jsx	/^    const newUser = {$/;"	C
 node	RTWebChatBackEnd/package-lock.json	/^        "node": "*"$/;"	s	object:packages.node_modules/glob.engines
 node	RTWebChatBackEnd/package-lock.json	/^        "node": "*"$/;"	s	object:packages.node_modules/minimatch.engines
@@ -5038,6 +5057,7 @@ node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=12"$/;"	s	object:pa
 node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=12"$/;"	s	object:packages.node_modules/webidl-conversions.engines
 node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=12",$/;"	s	object:packages.node_modules/jsonwebtoken.engines
 node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=12.0.0"$/;"	s	object:packages.node_modules/kareem.engines
+node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/prettier.engines
 node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/tr46.engines
 node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=14.0.0"$/;"	s	object:packages.node_modules/mquery.engines
 node	RTWebChatBackEnd/package-lock.json	/^        "node": ">=16"$/;"	s	object:packages.node_modules/whatwg-url.engines
@@ -5305,6 +5325,7 @@ node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=12.22"$/;"	s	objec
 node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/@testing-library/dom.engines
 node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/@testing-library/react.engines
 node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/local-pkg.engines
+node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/prettier.engines
 node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14"$/;"	s	object:packages.node_modules/vitest/node_modules/signal-exit.engines
 node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14",$/;"	s	object:packages.node_modules/@testing-library/jest-dom.engines
 node	RTWebChatFrontEnd/package-lock.json	/^        "node": ">=14.0.0"$/;"	s	object:packages.node_modules/@remix-run/router.engines
@@ -6506,6 +6527,8 @@ node_modules/pkg-dir/node_modules/p-locate	RTWebChatFrontEnd/package-lock.json	/
 node_modules/pkg-types	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/pkg-types": {$/;"	o	object:packages
 node_modules/postcss	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/postcss": {$/;"	o	object:packages
 node_modules/prelude-ls	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/prelude-ls": {$/;"	o	object:packages
+node_modules/prettier	RTWebChatBackEnd/package-lock.json	/^    "node_modules\/prettier": {$/;"	o	object:packages
+node_modules/prettier	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/prettier": {$/;"	o	object:packages
 node_modules/pretty-format	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/pretty-format": {$/;"	o	object:packages
 node_modules/pretty-format/node_modules/ansi-styles	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/pretty-format\/node_modules\/ansi-styles": {$/;"	o	object:packages
 node_modules/pretty-format/node_modules/react-is	RTWebChatFrontEnd/package-lock.json	/^    "node_modules\/pretty-format\/node_modules\/react-is": {$/;"	o	object:packages
@@ -7067,6 +7090,12 @@ postcss	RTWebChatFrontEnd/package-lock.json	/^        "postcss": "^8.4.32",$/;"	
 prelude-ls	RTWebChatFrontEnd/package-lock.json	/^        "prelude-ls": "^1.2.1"$/;"	s	object:packages.node_modules/type-check.dependencies
 prelude-ls	RTWebChatFrontEnd/package-lock.json	/^        "prelude-ls": "^1.2.1",$/;"	s	object:packages.node_modules/levn.dependencies
 prelude-ls	RTWebChatFrontEnd/package-lock.json	/^        "prelude-ls": "^1.2.1",$/;"	s	object:packages.node_modules/optionator.dependencies
+prettier	RTWebChatBackEnd/package-lock.json	/^        "prettier": "^3.2.5",$/;"	s	object:packages..dependencies
+prettier	RTWebChatBackEnd/package-lock.json	/^        "prettier": "bin\/prettier.cjs"$/;"	s	object:packages.node_modules/prettier.bin
+prettier	RTWebChatBackEnd/package.json	/^    "prettier": "^3.2.5",$/;"	s	object:dependencies
+prettier	RTWebChatFrontEnd/package-lock.json	/^        "prettier": "^3.2.5",$/;"	s	object:packages..dependencies
+prettier	RTWebChatFrontEnd/package-lock.json	/^        "prettier": "bin\/prettier.cjs"$/;"	s	object:packages.node_modules/prettier.bin
+prettier	RTWebChatFrontEnd/package.json	/^    "prettier": "^3.2.5",$/;"	s	object:dependencies
 pretty-format	RTWebChatFrontEnd/package-lock.json	/^        "pretty-format": "^27.0.2"$/;"	s	object:packages.node_modules/@testing-library/dom.dependencies
 pretty-format	RTWebChatFrontEnd/package-lock.json	/^        "pretty-format": "^29.7.0"$/;"	s	object:packages.node_modules/@vitest/snapshot.dependencies
 pretty-format	RTWebChatFrontEnd/package-lock.json	/^        "pretty-format": "^29.7.0"$/;"	s	object:packages.node_modules/@vitest/utils.dependencies
@@ -7081,6 +7110,7 @@ pretty-format	RTWebChatFrontEnd/package-lock.json	/^        "pretty-format": "^2
 pretty-format	RTWebChatFrontEnd/package-lock.json	/^        "pretty-format": "^29.7.0",$/;"	s	object:packages.node_modules/jest-message-util.dependencies
 pretty-format	RTWebChatFrontEnd/package-lock.json	/^        "pretty-format": "^29.7.0",$/;"	s	object:packages.node_modules/jest-snapshot.dependencies
 preview	RTWebChatFrontEnd/package.json	/^    "preview": "vite preview",$/;"	s	object:scripts
+printWidth	RTWebChatBackEnd/prettierrc.json	/^  "printWidth": 80,$/;"	n
 private	RTWebChatFrontEnd/package.json	/^  "private": true,$/;"	b
 prompts	RTWebChatFrontEnd/package-lock.json	/^        "prompts": "^2.0.1"$/;"	s	object:packages.node_modules/create-jest.dependencies
 prop-types	RTWebChatFrontEnd/package-lock.json	/^        "prop-types": "^15.6.2"$/;"	s	object:packages.node_modules/react-transition-group.dependencies
@@ -7351,6 +7381,7 @@ resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/regis
 resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/path-is-absolute\/-\/path-is-absolute-1.0.1.tgz/;"	s	object:packages.node_modules/path-is-absolute
 resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/path-to-regexp\/-\/path-to-regexp-0.1.7.tgz",$/;"	s	object:packages.node_modules/path-to-regexp
 resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/picomatch\/-\/picomatch-2.3.1.tgz",$/;"	s	object:packages.node_modules/picomatch
+resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/prettier\/-\/prettier-3.2.5.tgz",$/;"	s	object:packages.node_modules/prettier
 resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/proxy-addr\/-\/proxy-addr-2.0.7.tgz",$/;"	s	object:packages.node_modules/proxy-addr
 resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/pstree.remy\/-\/pstree.remy-1.1.8.tgz",$/;"	s	object:packages.node_modules/pstree.remy
 resolved	RTWebChatBackEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/punycode\/-\/punycode-2.3.1.tgz",$/;"	s	object:packages.node_modules/punycode
@@ -8058,6 +8089,7 @@ resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/regi
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/pkg-types\/-\/pkg-types-1.0.3.tgz",$/;"	s	object:packages.node_modules/pkg-types
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/postcss\/-\/postcss-8.4.33.tgz",$/;"	s	object:packages.node_modules/postcss
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/prelude-ls\/-\/prelude-ls-1.2.1.tgz",$/;"	s	object:packages.node_modules/prelude-ls
+resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/prettier\/-\/prettier-3.2.5.tgz",$/;"	s	object:packages.node_modules/prettier
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/pretty-format\/-\/pretty-format-27.5.1.tgz",$/;"	s	object:packages.node_modules/pretty-format
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/pretty-format\/-\/pretty-format-29.7.0.tgz",$/;"	s	object:packages.node_modules/@jest/core/node_modules/pretty-format
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/pretty-format\/-\/pretty-format-29.7.0.tgz",$/;"	s	object:packages.node_modules/@vitest/snapshot/node_modules/pretty-format
@@ -8260,10 +8292,10 @@ resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/regi
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/yocto-queue\/-\/yocto-queue-0.1.0.tgz",$/;"	s	object:packages.node_modules/yocto-queue
 resolved	RTWebChatFrontEnd/package-lock.json	/^      "resolved": "https:\/\/registry.npmjs.org\/yocto-queue\/-\/yocto-queue-1.0.0.tgz",$/;"	s	object:packages.node_modules/@vitest/runner/node_modules/yocto-queue
 response	RTWebChatFrontEnd/src/services/login.js	/^    const response = await axios.post(baseUrl, credentails)$/;"	C
-response	RTWebChatFrontEnd/src/services/room.js	/^    const response = await axios.get(`${baseUrl}${id}`);$/;"	C
-response	RTWebChatFrontEnd/src/services/room.js	/^    const response = await axios.post(`${baseUrl}create`, { name, sender, users });$/;"	C
+response	RTWebChatFrontEnd/src/services/room.js	/^    const response = await axios.get(`${baseUrl}${id}`, config);$/;"	C
+response	RTWebChatFrontEnd/src/services/room.js	/^    const response = await axios.post(`${baseUrl}create`, { name, sender, users }, config);$/;"	C
 response	RTWebChatFrontEnd/src/services/room.js	/^    const response = await axios.put(`${baseUrl}${id}`, { name, message, sender, users });$/;"	C
-response	RTWebChatFrontEnd/src/services/user.js	/^	const response = await axios.get(baseUrl);$/;"	C
+response	RTWebChatFrontEnd/src/services/user.js	/^    const response = await axios.get(baseUrl, config);$/;"	C
 response	RTWebChatFrontEnd/src/services/user.js	/^    const response = await axios.post(baseUrl, newUser);$/;"	C
 reusify	RTWebChatFrontEnd/package-lock.json	/^        "reusify": "^1.0.4"$/;"	s	object:packages.node_modules/fastq.dependencies
 rimraf	RTWebChatBackEnd/package-lock.json	/^        "rimraf": "^3.0.2",$/;"	s	object:packages.node_modules/@mapbox/node-pre-gyp.dependencies
@@ -8272,7 +8304,8 @@ rimraf	RTWebChatFrontEnd/package-lock.json	/^        "rimraf": "^3.0.2"$/;"	s	ob
 rimraf	RTWebChatFrontEnd/package-lock.json	/^        "rimraf": "bin.js"$/;"	s	object:packages.node_modules/rimraf.bin
 rollup	RTWebChatFrontEnd/package-lock.json	/^        "rollup": "^4.2.0"$/;"	s	object:packages.node_modules/vite.dependencies
 rollup	RTWebChatFrontEnd/package-lock.json	/^        "rollup": "dist\/bin\/rollup"$/;"	s	object:packages.node_modules/rollup.bin
-room	RTWebChatBackEnd/websocket/messageHandler.js	/^    const room = ws.room;$/;"	C
+roomDoc	RTWebChatBackEnd/websocket/roomHandler.js	/^         roomDoc = new Room({ name: newRoom, users: [ws.user.id]})$/;"	v
+roomDoc	RTWebChatBackEnd/websocket/roomHandler.js	/^      let roomDoc = await Room.findOne({ name: newRoom })$/;"	v
 roomMap	RTWebChatBackEnd/websocket/index.js	/^const roomMap = new Map()$/;"	C
 roomRouter	RTWebChatBackEnd/app.js	/^const roomRouter = require('.\/controllers\/room')$/;"	C
 roomRouter	RTWebChatBackEnd/controllers/room.js	/^const roomRouter = require('express').Router()$/;"	C
@@ -8298,7 +8331,7 @@ saxes	RTWebChatFrontEnd/package-lock.json	/^        "saxes": "^6.0.0",$/;"	s	obj
 scheduler	RTWebChatFrontEnd/package-lock.json	/^        "scheduler": "^0.23.0"$/;"	s	object:packages.node_modules/react-dom.dependencies
 scripts	RTWebChatBackEnd/package.json	/^  "scripts": {$/;"	o
 scripts	RTWebChatFrontEnd/package.json	/^  "scripts": {$/;"	o
-searchQuery	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^                value={searchQuery}$/;"	M	class:value
+semi	RTWebChatBackEnd/prettierrc.json	/^  "semi": false,$/;"	b
 semver	RTWebChatBackEnd/package-lock.json	/^        "semver": "^6.0.0"$/;"	s	object:packages.node_modules/make-dir.dependencies
 semver	RTWebChatBackEnd/package-lock.json	/^        "semver": "^7.3.5",$/;"	s	object:packages.node_modules/@mapbox/node-pre-gyp.dependencies
 semver	RTWebChatBackEnd/package-lock.json	/^        "semver": "^7.5.3"$/;"	s	object:packages.node_modules/simple-update-notifier.dependencies
@@ -8321,6 +8354,7 @@ send	RTWebChatBackEnd/package-lock.json	/^        "send": "0.18.0"$/;"	s	object:
 send	RTWebChatBackEnd/package-lock.json	/^        "send": "0.18.0",$/;"	s	object:packages.node_modules/express.dependencies
 sendMessage	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^  const sendMessage = (message) => {$/;"	C
 sendMessageById	RTWebChatFrontEnd/src/services/room.js	/^const sendMessageById = async (id, name, message, sender, users) => {$/;"	C
+sender	RTWebChatBackEnd/websocket/messageHandler.js	/^            sender: ws.user.username,$/;"	p	class:messageSummary
 serve-static	RTWebChatBackEnd/package-lock.json	/^        "serve-static": "1.15.0",$/;"	s	object:packages.node_modules/express.dependencies
 set-blocking	RTWebChatBackEnd/package-lock.json	/^        "set-blocking": "^2.0.0"$/;"	s	object:packages.node_modules/npmlog.dependencies
 set-function-length	RTWebChatBackEnd/package-lock.json	/^        "set-function-length": "^1.2.0"$/;"	s	object:packages.node_modules/call-bind.dependencies
@@ -8330,22 +8364,24 @@ set-function-name	RTWebChatFrontEnd/package-lock.json	/^        "set-function-na
 set-function-name	RTWebChatFrontEnd/package-lock.json	/^        "set-function-name": "^2.0.1"$/;"	s	object:packages.node_modules/iterator.prototype.dependencies
 setCurrentUser	RTWebChatFrontEnd/src/components/NavBar.jsx	/^  const [currentUser, setCurrentUser] = useState(false);$/;"	C
 setErrorMessage	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^  const [errorMessage, setErrorMessage] = useState('');$/;"	C
+setFilteredFriends	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^  const [filteredFriends, setFilteredFriends] = useState(null);$/;"	C
 setIsCreateAccount	RTWebChatFrontEnd/src/components/NavBar.jsx	/^  const [isCreateAccount, setIsCreateAccount] = useState(false);$/;"	C
 setIsLoggedIn	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^    const [isLoggedIn, setIsLoggedIn] = useState(null);$/;"	C
 setIsLoggedIn	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^    const [isLoggedIn, setIsLoggedIn] = useState(null);$/;"	C
 setLoading	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^const CreateUserForm = ({ setLoading }) => {$/;"	M	class:CreateUserForm
 setLoading	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^const SignInForm = ({ setLoading }) => {$/;"	M	class:SignInForm
-setMessage	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^  const [message, setMessage] = useState('');$/;"	C
+setMessage	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^  const [message, setMessage] = useState("");$/;"	C
 setMessages	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^  const [messages, setMessages] = useState([]);$/;"	C
 setOpen	RTWebChatFrontEnd/src/components/PhonePictureUpload.jsx	/^  const [open, setOpen] = useState(false);$/;"	C
 setOpenSignInDialog	RTWebChatFrontEnd/src/components/NavBar.jsx	/^  const [openSignInDialog, setOpenSignInDialog] = useState(false);$/;"	C
 setPassword	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^    const [password, setPassword] = useState('');$/;"	C
 setPassword	RTWebChatFrontEnd/src/components/NavBar.jsx	/^  const [password, setPassword] = useState('');$/;"	C
 setPassword	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^    const [password, setPassword] = useState('');$/;"	C
-setSearchQuery	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^    const [searchQuery, setSearchQuery] = useState('');$/;"	C
+setSearchQuery	RTWebChatFrontEnd/src/components/FriendsList.jsx	/^  const [searchQuery, setSearchQuery] = useState("");$/;"	C
 setSelectedFriend	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^    const [selectedFriend, setSelectedFriend] = useState(null);$/;"	C
 setToken	RTWebChatFrontEnd/src/services/room.js	/^const setToken = newToken => {$/;"	C
-setToken	RTWebChatFrontEnd/src/services/user.js	/^const setToken = newToken => {$/;"	C
+setToken	RTWebChatFrontEnd/src/services/user.js	/^const setToken = (newToken) => {$/;"	C
+setUserList	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^    const [userList, setUserList] = useState(null);$/;"	C
 setUsername	RTWebChatFrontEnd/src/components/CreateUserForm.jsx	/^    const [username, setUsername] = useState('');$/;"	C
 setUsername	RTWebChatFrontEnd/src/components/NavBar.jsx	/^  const [username, setUsername] = useState('');$/;"	C
 setUsername	RTWebChatFrontEnd/src/components/SignInForm.jsx	/^    const [username, setUsername] = useState('');$/;"	C
@@ -8366,6 +8402,7 @@ signal-exit	RTWebChatFrontEnd/package-lock.json	/^        "signal-exit": "^3.0.3
 signal-exit	RTWebChatFrontEnd/package-lock.json	/^        "signal-exit": "^3.0.7"$/;"	s	object:packages.node_modules/write-file-atomic.dependencies
 signal-exit	RTWebChatFrontEnd/package-lock.json	/^        "signal-exit": "^4.1.0",$/;"	s	object:packages.node_modules/vitest/node_modules/execa.dependencies
 simple-update-notifier	RTWebChatBackEnd/package-lock.json	/^        "simple-update-notifier": "^2.0.0",$/;"	s	object:packages.node_modules/nodemon.dependencies
+singleQuote	RTWebChatBackEnd/prettierrc.json	/^  "singleQuote": true,$/;"	b
 sisteransi	RTWebChatFrontEnd/package-lock.json	/^        "sisteransi": "^1.0.5"$/;"	s	object:packages.node_modules/prompts.dependencies
 slash	RTWebChatFrontEnd/package-lock.json	/^        "slash": "^3.0.0"$/;"	s	object:packages.node_modules/@jest/console.dependencies
 slash	RTWebChatFrontEnd/package-lock.json	/^        "slash": "^3.0.0"$/;"	s	object:packages.node_modules/@jest/test-sequencer.dependencies
@@ -8471,13 +8508,18 @@ supports-preserve-symlinks-flag	RTWebChatFrontEnd/package-lock.json	/^        "s
 supports-preserve-symlinks-flag	RTWebChatFrontEnd/package-lock.json	/^        "supports-preserve-symlinks-flag": "^1.0.0"$/;"	s	object:packages.node_modules/jest-resolve/node_modules/resolve.dependencies
 supports-preserve-symlinks-flag	RTWebChatFrontEnd/package-lock.json	/^        "supports-preserve-symlinks-flag": "^1.0.0"$/;"	s	object:packages.node_modules/resolve.dependencies
 symbol-tree	RTWebChatFrontEnd/package-lock.json	/^        "symbol-tree": "^3.2.4",$/;"	s	object:packages.node_modules/jsdom.dependencies
+tabWidth	RTWebChatBackEnd/prettierrc.json	/^  "tabWidth": 2$/;"	n
 tar	RTWebChatBackEnd/package-lock.json	/^        "tar": "^6.1.11"$/;"	s	object:packages.node_modules/@mapbox/node-pre-gyp.dependencies
 terser	RTWebChatFrontEnd/package-lock.json	/^        "terser": "^5.4.0"$/;"	s	object:packages.node_modules/vite.peerDependencies
 terser	RTWebChatFrontEnd/package-lock.json	/^        "terser": {$/;"	o	object:packages.node_modules/vite.peerDependenciesMeta
 test	RTWebChatBackEnd/package.json	/^    "test": "echo \\"Error: no test specified\\" && exit 1",$/;"	s	object:scripts
 test	RTWebChatFrontEnd/package.json	/^    "test": "vitest run"$/;"	s	object:scripts
 test-exclude	RTWebChatFrontEnd/package-lock.json	/^        "test-exclude": "^6.0.0"$/;"	s	object:packages.node_modules/babel-plugin-istanbul.dependencies
+text	RTWebChatBackEnd/websocket/messageHandler.js	/^            text: newMessage.text,$/;"	p	class:messageSummary
+text	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { text: message, timestamp: Date.now(), id: Date.now()};$/;"	p	class:newMessage
 text-table	RTWebChatFrontEnd/package-lock.json	/^        "text-table": "^0.2.0"$/;"	s	object:packages.node_modules/eslint.dependencies
+timestamp	RTWebChatBackEnd/websocket/messageHandler.js	/^            timestamp: newMessage.timestamp,$/;"	p	class:messageSummary
+timestamp	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { text: message, timestamp: Date.now(), id: Date.now()};$/;"	p	class:newMessage
 tinybench	RTWebChatFrontEnd/package-lock.json	/^        "tinybench": "^2.5.1",$/;"	s	object:packages.node_modules/vitest.dependencies
 tinypool	RTWebChatFrontEnd/package-lock.json	/^        "tinypool": "^0.8.2",$/;"	s	object:packages.node_modules/vitest.dependencies
 tinyspy	RTWebChatFrontEnd/package-lock.json	/^        "tinyspy": "^2.2.0"$/;"	s	object:packages.node_modules/@vitest/spy.dependencies
@@ -8494,6 +8536,7 @@ tough-cookie	RTWebChatFrontEnd/package-lock.json	/^        "tough-cookie": "^4.1
 tr46	RTWebChatBackEnd/package-lock.json	/^        "tr46": "^4.1.1",$/;"	s	object:packages.node_modules/whatwg-url.dependencies
 tr46	RTWebChatBackEnd/package-lock.json	/^        "tr46": "~0.0.3",$/;"	s	object:packages.node_modules/node-fetch/node_modules/whatwg-url.dependencies
 tr46	RTWebChatFrontEnd/package-lock.json	/^        "tr46": "^5.0.0",$/;"	s	object:packages.node_modules/whatwg-url.dependencies
+trailingComma	RTWebChatBackEnd/prettierrc.json	/^  "trailingComma": "es5",$/;"	s
 ts-node	RTWebChatFrontEnd/package-lock.json	/^        "ts-node": ">=9.0.0"$/;"	s	object:packages.node_modules/jest-config.peerDependencies
 ts-node	RTWebChatFrontEnd/package-lock.json	/^        "ts-node": {$/;"	o	object:packages.node_modules/jest-config.peerDependenciesMeta
 tslib	RTWebChatFrontEnd/package-lock.json	/^        "tslib": "^2.0.0"$/;"	s	object:packages.node_modules/@dnd-kit/accessibility.dependencies
@@ -8542,7 +8585,6 @@ type	RTWebChatFrontEnd/package-lock.json	/^        "type": "opencollective",$/;"
 type	RTWebChatFrontEnd/package-lock.json	/^        "type": "opencollective",$/;"	s	object:packages.node_modules/@popperjs/core.funding
 type	RTWebChatFrontEnd/package-lock.json	/^        "type": "opencollective",$/;"	s	object:packages.node_modules/immer.funding
 type	RTWebChatFrontEnd/package.json	/^  "type": "module",$/;"	s
-type	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^      const newMessage = { type: 'text', content: message, id: Date.now() };$/;"	p	class:newMessage
 type-check	RTWebChatFrontEnd/package-lock.json	/^        "type-check": "^0.4.0"$/;"	s	object:packages.node_modules/optionator.dependencies
 type-check	RTWebChatFrontEnd/package-lock.json	/^        "type-check": "~0.4.0"$/;"	s	object:packages.node_modules/levn.dependencies
 type-detect	RTWebChatFrontEnd/package-lock.json	/^        "type-detect": "4.0.8"$/;"	s	object:packages.node_modules/@sinonjs/commons.dependencies
@@ -8577,6 +8619,7 @@ url	RTWebChatBackEnd/package-lock.json	/^          "url": "https:\/\/feross.org\
 url	RTWebChatBackEnd/package-lock.json	/^          "url": "https:\/\/github.com\/sponsors\/feross"$/;"	s	object:packages.node_modules/safe-buffer.funding.0
 url	RTWebChatBackEnd/package-lock.json	/^          "url": "https:\/\/www.patreon.com\/feross"$/;"	s	object:packages.node_modules/safe-buffer.funding.1
 url	RTWebChatBackEnd/package-lock.json	/^        "url": "https:\/\/github.com\/motdotla\/dotenv?sponsor=1"$/;"	s	object:packages.node_modules/dotenv.funding
+url	RTWebChatBackEnd/package-lock.json	/^        "url": "https:\/\/github.com\/prettier\/prettier?sponsor=1"$/;"	s	object:packages.node_modules/prettier.funding
 url	RTWebChatBackEnd/package-lock.json	/^        "url": "https:\/\/github.com\/sponsors\/isaacs"$/;"	s	object:packages.node_modules/glob.funding
 url	RTWebChatBackEnd/package-lock.json	/^        "url": "https:\/\/github.com\/sponsors\/isaacs"$/;"	s	object:packages.node_modules/rimraf.funding
 url	RTWebChatBackEnd/package-lock.json	/^        "url": "https:\/\/github.com\/sponsors\/jonschlinkert"$/;"	s	object:packages.node_modules/picomatch.funding
@@ -8682,6 +8725,7 @@ url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/chalk\/wrap-ansi?sponsor=1"$/;"	s	object:packages.node_modules/wrap-ansi.funding
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/fb55\/entities?sponsor=1"$/;"	s	object:packages.node_modules/entities.funding
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/inikulin\/parse5?sponsor=1"$/;"	s	object:packages.node_modules/parse5.funding
+url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/prettier\/prettier?sponsor=1"$/;"	s	object:packages.node_modules/prettier.funding
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/sindresorhus\/emittery?sponsor=1"$/;"	s	object:packages.node_modules/emittery.funding
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/sindresorhus\/execa?sponsor=1"$/;"	s	object:packages.node_modules/execa.funding
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/github.com\/sindresorhus\/execa?sponsor=1"$/;"	s	object:packages.node_modules/vitest/node_modules/execa.funding
@@ -8826,11 +8870,11 @@ url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/opencollecti
 url	RTWebChatFrontEnd/package-lock.json	/^        "url": "https:\/\/opencollective.com\/vitest"$/;"	s	object:packages.node_modules/vitest.funding
 url-parse	RTWebChatFrontEnd/package-lock.json	/^        "url-parse": "^1.5.3"$/;"	s	object:packages.node_modules/tough-cookie.dependencies
 use-sync-external-store	RTWebChatFrontEnd/package-lock.json	/^        "use-sync-external-store": "^1.0.0"$/;"	s	object:packages.node_modules/react-redux.dependencies
-user	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^                {selectedFriend && <MessagingComponent user={user} id={selectedFriend.id} style=/;"	M	class:selectedFriend
-user	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^const ChatPage = ({ user, userList }) => {$/;"	M	class:ChatPage
+user	RTWebChatFrontEnd/src/components/ChatPage.jsx	/^const ChatPage = ({ user }) => {$/;"	M	class:ChatPage
 user	RTWebChatFrontEnd/src/components/MessagingComponent.jsx	/^const MessagingComponent = ({ user, id }) => {$/;"	M	class:MessagingComponent
 user	RTWebChatFrontEnd/src/components/NavBar.jsx	/^const NavBar = ({ user }) => {$/;"	M	class:NavBar
 userExtractor	RTWebChatBackEnd/controllers/room.js	/^const userExtractor = require('..\/utils\/middleware').userExtractor$/;"	C
+userExtractor	RTWebChatBackEnd/controllers/users.js	/^const userExtractor = require('..\/utils\/middleware').userExtractor$/;"	C
 userExtractor	RTWebChatBackEnd/utils/middleware.js	/^const userExtractor = async (request, response, next) => {$/;"	C
 userSchema	RTWebChatBackEnd/models/user.js	/^const userSchema = new mongoose.Schema({$/;"	C
 username	RTWebChatFrontEnd/src/components/NavBar.jsx	/^              value={username}$/;"	M	class:fullWidth
@@ -8983,6 +9027,7 @@ version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.1.2",$/;"	s	obj
 version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.1.2",$/;"	s	object:packages.node_modules/minimatch
 version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.1.3",$/;"	s	object:packages.node_modules/anymatch
 version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.2.2",$/;"	s	object:packages.node_modules/jws
+version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.2.5",$/;"	s	object:packages.node_modules/prettier
 version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.3.6",$/;"	s	object:packages.node_modules/fs-minipass/node_modules/minipass
 version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.3.6",$/;"	s	object:packages.node_modules/minizlib/node_modules/minipass
 version	RTWebChatBackEnd/package-lock.json	/^      "version": "3.6.0",$/;"	s	object:packages.node_modules/chokidar
@@ -9562,6 +9607,7 @@ version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.2.1",$/;"	s	ob
 version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.2.2",$/;"	s	object:packages.node_modules/@dnd-kit/utilities
 version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.2.2",$/;"	s	object:packages.node_modules/istanbul-lib-coverage
 version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.2.4",$/;"	s	object:packages.node_modules/symbol-tree
+version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.2.5",$/;"	s	object:packages.node_modules/prettier
 version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.2.9",$/;"	s	object:packages.node_modules/flatted
 version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.3.0",$/;"	s	object:packages.node_modules/import-fresh
 version	RTWebChatFrontEnd/package-lock.json	/^      "version": "3.3.2",$/;"	s	object:packages.node_modules/hoist-non-react-statics
@@ -9955,6 +10001,7 @@ ws	RTWebChatBackEnd/package.json	/^    "ws": "^8.16.0"$/;"	s	object:dependencies
 ws	RTWebChatFrontEnd/package-lock.json	/^        "ws": "^8.16.0"$/;"	s	object:packages..dependencies
 ws	RTWebChatFrontEnd/package-lock.json	/^        "ws": "^8.16.0",$/;"	s	object:packages.node_modules/jsdom.dependencies
 ws	RTWebChatFrontEnd/package.json	/^    "ws": "^8.16.0"$/;"	s	object:dependencies
+ws	RTWebChatFrontEnd/src/services/websockets.js	/^    const ws = new WebSocket(`ws:\/\/127.0.0.1:8080`, [user])$/;"	C
 wss	RTWebChatBackEnd/index.js	/^const wss = createWebSocketServer(httpServer)$/;"	C
 wss	RTWebChatBackEnd/websocket/index.js	/^    const wss = new WebSocketServer({ server: httpServer })$/;"	C
 xlink	RTWebChatFrontEnd/public/vite.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="http:\/\/www.w3.org\/1999\/xlink" aria-/;"	n	uri:http://www.w3.org/1999/xlink
