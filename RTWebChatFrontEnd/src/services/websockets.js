@@ -1,5 +1,5 @@
 const connectWebSocket = (user, room, setMessages) => {
-    const ws = new WebSocket(`ws://127.0.0.1:8080`, [user.token])
+    const ws = new WebSocket(`ws://192.168.3.164:8081/`, [user.token])
 
     ws.addEventListener("open", () => {
         console.log('WebSocket Connection Open')

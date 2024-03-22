@@ -14,6 +14,7 @@ const create = async (newUser) => {
 
 const getUsers = async () => {
     const config = { headers: { Authorization: token } };
+    console.log(config)
     const response = await axios.get(baseUrl, config);
     return response.data;
 }

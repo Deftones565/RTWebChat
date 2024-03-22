@@ -22,8 +22,9 @@ const handleTextMessage = async (ws, room, message, roomMap) => {
         await roomDoc.save();
 
         const messageSummary = {
+            id: newMessage._id,
             text: newMessage.text,
-            sender: ws.user.username,
+            sender: {username: ws.user.username},
             timestamp: newMessage.timestamp,
         };
 

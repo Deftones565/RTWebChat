@@ -37,7 +37,7 @@ const MessageList = ({ messages, username }) => {
           color: align === 'right' ? '#888' : '#444',
           marginBottom: '5px',
         };
-
+        
         return message.type === "image" ? (
           <CardMedia
             key={message.id}
@@ -56,7 +56,7 @@ const MessageList = ({ messages, username }) => {
             <Typography sx={usernameStyles}>
               {message.sender && message.sender.username ? message.sender.username : username}
             </Typography>
-            <Typography>{message.text}</Typography>
+            <Typography sx={{ wordBreak: "break-word" }}>{message.text}</Typography>
           </Paper>
         );
       })}

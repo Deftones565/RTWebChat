@@ -11,7 +11,8 @@ import userService from "./services/user";
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load the user from local storage on component mount
@@ -27,40 +28,50 @@ function App() {
         }));
         roomService.setToken(loggedUser);
         userService.setToken(loggedUser);
+        setIsLoggedIn(true);
+      }
 
       setLoading(false);
-      }
     };
     loadUser();
   }, []);
 
+  useEffect(() => {
+    if (isLoggedIn && !loading) {
+      navigate("/chat");
+    }
+  }, [isLoggedIn, navigate, loading]);
+
+  if (isLoggedIn && !user) {
+    return (
+      <Container>
+        <CircularProgress />
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      {loading && !user ? (
-        <>
-          <Routes>
-            <Route path="/" element={<SignInForm setLoading={setLoading} />} />
-          </Routes>
-        </>
-      ) : (
-        <Routes>
-          <Route path="/" element={<ChatPage user={user} />} />
-          <Route
-            path="/friends/:id"
-            element={<MessagingComponent user={user.token} />}
-          />
-          <Route
-            path="/login"
-            element={<SignInForm setLoading={setLoading} />}
-          />
-          <Route
-            path="/create"
-            element={
-              <CreateUserForm setUser={setUser} setLoading={setLoading} />
-            }
-          />
-        </Routes>
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <SignInForm
+              setLoading={setLoading}
+              setIsLoggedIn={setIsLoggedIn}
+              setUser={setUser}
+            />
+          }
+        />
+        <Route
+          path="/chat"
+          element={<ChatPage user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/create"
+          element={<CreateUserForm setUser={setUser} setLoading={setLoading} />}
+        />
+      </Routes>
     </Container>
   );
 }

@@ -7,7 +7,7 @@ import { useWhatChanged } from "@simbathesailor/use-what-changed";
 import roomService from "../services/room";
 import webSocketService from '../services/websockets'
 
-const MessagingComponent = ({ user, id }) => {
+const MessagingComponent = ({ user, id, setUser }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const bottomRef = useRef(null);
@@ -86,7 +86,7 @@ const MessagingComponent = ({ user, id }) => {
 
   return (
     <Box style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <NavBar user={user.token} />
+      <NavBar user={user} setUser={setUser}/>
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
         <MessageList username={user.username} messages={messages} />
         <Box ref={bottomRef} />
