@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = '/api/room/';
+const baseUrl = '/api/rooms/';
 
 let token = null;
 
@@ -8,7 +8,8 @@ const setToken = newToken => {
 }
 
 const getRoomMessagesById = async (id) => {
-    const response = await axios.get(`${baseUrl}${id}`);
+    const config = { headers: { Authorization: token } }
+    const response = await axios.get(`${baseUrl}${id}`, config);
     return response.data;
 }
 

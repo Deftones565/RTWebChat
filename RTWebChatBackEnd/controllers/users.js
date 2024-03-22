@@ -33,8 +33,13 @@ usersRouter.post('/', async (request, response) => {
 });
 
 usersRouter.get('/', userExtractor, async (request, response) => {
-    const users = await User.find({})//.populate('messages', { content: 1, date: 1 })
+    const users = await User.find({})
     response.json(users)
+})
+
+usersRouter.get('/:id', userExtractor, async (request, response) => {
+    const user = await User.findById(request.headers.params)
+    response.json(user)
 })
 
 module.exports = usersRouter;

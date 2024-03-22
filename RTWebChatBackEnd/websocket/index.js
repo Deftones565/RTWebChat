@@ -14,7 +14,9 @@ const createWebSocketServer = (httpServer) => {
 
         // Extract room information from the request URL
         const { pathname } = new URL(request.url, `http://${request.headers.host}`);
-        const room = pathname.substring(pathname.lastIndexOf('/') + 1) || 'default';
+        console.log('this is ws on connection duh:', ws)
+        let room = 'default'
+        console.log('this is room init: ', room)
         console.log(`User connected to room: ${room}`);
 
         const token = request.headers['sec-websocket-protocol'];
@@ -35,12 +37,14 @@ const createWebSocketServer = (httpServer) => {
 
             // Store the user information in the WebSocket connection object if needed
             ws.user = decoded;
+            console.log('ws.user isss', ws.user)
 
             ws.on('message', (data) => {
                 const message = JSON.parse(data);
-                console.log(message)
+                console.log('this is message on server:', message)
 
                 if (message.join) {
+                    room = message.join
                     // Handle joining a room
                     handleJoinRoom(ws, room, message.join, roomMap);
                 } else {

@@ -1,50 +1,65 @@
-const roomRouter = require('express').Router()
-const Room = require('../models/room')
-const Message = require('../models/message');
-const logger = require('../utils/logger')
-const userExtractor = require('../utils/middleware').userExtractor
+const roomRouter = require("express").Router();
+const Room = require("../models/room");
+const Message = require("../models/message");
+const logger = require("../utils/logger");
+const userExtractor = require("../utils/middleware").userExtractor;
 
-roomRouter.get('/:id', userExtractor, async (request, response) => {
+roomRouter.get("/:id", userExtractor, async (request, response) => {
     try {
-        const room = await Room.findById(request.params.id).populate({ path: 'messages' });
+        console.log("this is request.params.id", request.params.id);
+        const room = await Room.find({ name: request.params.id }).populate({
+            path: "messages",
+            populate: {
+                path: "sender",
+                select: "username"
+            }
+        });
         response.json(room);
     } catch (error) {
         console.error(error);
-        response.status(500).json({ error: 'Internal Server Error' });
+        response.status(500).json({ error: "Internal Server Error" });
     }
 });
 
-roomRouter.post('/create', userExtractor, async (request, response) => {
+roomRouter.get("/", async (request, response) => {
     try {
-        const { name, sender, users } = request.body
+        const rooms = await Room.find({});
+        response.json(rooms);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+roomRouter.post("/create", userExtractor, async (request, response) => {
+    try {
+        const { name, sender, users } = request.body;
 
         const room = new Room({
             name,
             sender,
-            users
-        })
+            users,
+        });
 
-        const savedRoom = await room.save()
-        response.status(201).json(savedRoom)
+        const savedRoom = await room.save();
+        response.status(201).json(savedRoom);
     } catch (error) {
-        logger.error('error creating room on POST:', error.message)
+        logger.error("error creating room on POST:", error.message);
         response.status(500).json({
-            error: 'Error creating room'
-        })
+            error: "Error creating room",
+        });
     }
-
-})
+});
 
 // Assuming 'Message' and 'Room' models are imported and defined
 
-roomRouter.put('/:id', userExtractor, async (request, response) => {
+roomRouter.put("/:id", userExtractor, async (request, response) => {
     const { id } = request.params;
-    const { text, sender } = request.body
+    const { text, sender } = request.body;
 
     const newMessage = new Message({
         text,
         sender,
-    })
+    });
 
     newMessage.save();
 
@@ -54,11 +69,12 @@ roomRouter.put('/:id', userExtractor, async (request, response) => {
             $push: { messages: newMessage },
         },
         { new: true }
-    ).populate({ path: 'users' }).populate({ path: 'messages' }).exec()
+    )
+        .populate({ path: "users" })
+        .populate({ path: "messages" })
+        .exec();
 
     response.json(updatedRoom);
 });
 
-
-
-module.exports = roomRouter
+module.exports = roomRouter;

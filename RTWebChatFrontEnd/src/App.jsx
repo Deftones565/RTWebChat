@@ -1,6 +1,6 @@
 import { Container, CircularProgress } from "@mui/material";
 import MessagingComponent from "./components/MessagingComponent";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import roomService from "./services/room";
 import SignInForm from "./components/SignInForm";
@@ -10,49 +10,68 @@ import userService from "./services/user";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);  
+  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Load the user from local storage on component mount
     const loadUser = async () => {
       const loggedUserJSON = window.localStorage.getItem("loggedChatAppUser");
-      if (loggedUserJSON) {
+      const usernameJSON = window.localStorage.getItem("username");
+      if (loggedUserJSON && usernameJSON) {
         const loggedUser = JSON.parse(loggedUserJSON);
-        setUser(loggedUser);
+        const username = JSON.parse(usernameJSON);
+        setUser((oldData) => ({
+          username: username,
+          token: loggedUser,
+        }));
         roomService.setToken(loggedUser);
-        userService.setToken(loggedUser)
+        userService.setToken(loggedUser);
+        setIsLoggedIn(true);
       }
+
       setLoading(false);
     };
     loadUser();
   }, []);
 
+  useEffect(() => {
+    if (isLoggedIn && !loading) {
+      navigate("/chat");
+    }
+  }, [isLoggedIn, navigate, loading]);
+
+  if (isLoggedIn && !user) {
+    return (
+      <Container>
+        <CircularProgress />
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <Routes>
-          <Route
-            path="/"
-            element={<ChatPage user={user} />}
-          />
-          <Route
-            path="/friends/:id"
-            element={<MessagingComponent user={user} />}
-          />
-          <Route
-            path="/login"
-            element={<SignInForm setUser={setUser} setLoading={setLoading} />}
-          />
-          <Route
-            path="/create"
-            element={
-              <CreateUserForm setUser={setUser} setLoading={setLoading} />
-            }
-          />
-        </Routes>
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <SignInForm
+              setLoading={setLoading}
+              setIsLoggedIn={setIsLoggedIn}
+              setUser={setUser}
+            />
+          }
+        />
+        <Route
+          path="/chat"
+          element={<ChatPage user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/create"
+          element={<CreateUserForm setUser={setUser} setLoading={setLoading} />}
+        />
+      </Routes>
     </Container>
   );
 }

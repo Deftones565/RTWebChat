@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { Container, Box, CircularProgress } from "@mui/material";
 import userService from "../services/user";
 
-const ChatPage = ({ user }) => {
+const ChatPage = ({ user, setUser }) => {
     const [selectedFriend, setSelectedFriend] = useState(null);
     const [userList, setUserList] = useState(null);
     const navigate = useNavigate();
@@ -17,30 +17,27 @@ const ChatPage = ({ user }) => {
     useEffect(() => {
         // Fetch the user list if the user is logged in
         const loadUserList = async () => {
-            if (user) {
                 try {
                     const users = await userService.getUsers();
                     setUserList(users);
                 } catch (error) {
                     // Handle error
+                    console.log('this is error', error)
                     if (error.response.status === 401) {
                         // User is not authenticated, redirect to login page
-                        navigate("/login");
+                        navigate("/");
                     } else {
                         // Display an error message or handle the error in another way
                         console.error("Error fetching user list:", error);
                     }
                 }
-            } else {
-                navigate("/login")
-            }
         };
         loadUserList();
-    }, [user, navigate]);
+    }, [navigate]);
 
     return (
         <Container style={{ display: "flex", height: "100vh" }}>
-            {!userList || !user ? (
+            {!userList || !user.token ? (
                 <Box
                     display="flex"
                     justifyContent="center"
@@ -67,6 +64,7 @@ const ChatPage = ({ user }) => {
                         {selectedFriend && (
                             <MessagingComponent
                                 user={user}
+                                setUser={setUser}
                                 id={selectedFriend.id}
                                 style={{ flexGrow: 1, height: "100%" }}
                             />

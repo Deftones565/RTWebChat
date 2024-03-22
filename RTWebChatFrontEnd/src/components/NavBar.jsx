@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import {
   AppBar,
   Button,
@@ -10,19 +10,18 @@ import {
   TextField,
   Toolbar,
   Typography,
-} from '@mui/material';
-import loginService from '../services/login';
-import roomService from '../services/room';
-import userService from '../services/user';
-import { useNavigate } from 'react-router-dom';
+} from "@mui/material";
+import loginService from "../services/login";
+import roomService from "../services/room";
+import userService from "../services/user";
+import { useNavigate } from "react-router-dom";
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, setUser }) => {
   const [openSignInDialog, setOpenSignInDialog] = useState(false);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [isCreateAccount, setIsCreateAccount] = useState(false);
-  const [username, setUsername] = useState('');
-  const [currentUser, setCurrentUser] = useState(false);
-  const navigate = useNavigate('/login')
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate("/login");
 
   const createUser = async () => {
     const newUser = {
@@ -31,33 +30,38 @@ const NavBar = ({ user }) => {
     };
     try {
       await userService.create(newUser);
-      setPassword('');
-      setUsername('');
+      setPassword("");
+      setUsername("");
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const signOut = () => {
-    window.localStorage.clear()
-    setCurrentUser(true)
-    navigate('/login')
-  }
+    console.log("signOut Happening");
+    window.localStorage.clear();
+    window.location.reload()
+    setUser(null);
+  };
   const signIn = async () => {
-    const res = await loginService.login({ username: username, password: password })
-    console.log(res.token)
+    console.log("some bad shit");
+    const res = await loginService.login({
+      username: username,
+      password: password,
+    });
+    console.log(res.token);
     if (res.token) {
       window.localStorage.setItem(
-        'loggedChatAppUser', JSON.stringify(res.token)
-      )
-      setCurrentUser(false)
+        "loggedChatAppUser",
+        JSON.stringify(res.token)
+      );
+      setCurrentUser(false);
     } else {
-      console.log('no token')
+      console.log("no token");
     }
-    setPassword('')
-    setUsername('')
-  }
-
+    setPassword("");
+    setUsername("");
+  };
 
   const handleOpenSignInDialog = () => {
     setOpenSignInDialog(true);
@@ -79,7 +83,7 @@ const NavBar = ({ user }) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">My NavBar</Typography>
-          {!user ? (
+          {!user.token ? (
             <>
               <Button color="inherit" onClick={handleOpenSignInDialog}>
                 Sign In
@@ -97,7 +101,9 @@ const NavBar = ({ user }) => {
       </AppBar>
 
       <Dialog open={openSignInDialog} onClose={handleCloseSignInDialog}>
-        <DialogTitle>{isCreateAccount ? 'Create Account' : 'Sign In'}</DialogTitle>
+        <DialogTitle>
+          {isCreateAccount ? "Create Account" : "Sign In"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
             <TextField
@@ -118,8 +124,11 @@ const NavBar = ({ user }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseSignInDialog}>Cancel</Button>
-          <Button color="primary" onClick={isCreateAccount ? createUser : signIn}>
-            {isCreateAccount ? 'Create Account' : 'Sign In'}
+          <Button
+            color="primary"
+            onClick={isCreateAccount ? createUser : signIn}
+          >
+            {isCreateAccount ? "Create Account" : "Sign In"}
           </Button>
         </DialogActions>
       </Dialog>
