@@ -7,7 +7,9 @@
   - Ensure that only authenticated users can send messages. ✅
   - Store user information securely. ✅
 
-- Connect Rooms and Messages to backend
+- Connect Rooms and Messages to backend ✅
+
+- Make the chat page look more visually appealing
 
 - User Profiles
   - Create user profiles with display names and avatars.
