@@ -1,31 +1,31 @@
-import React, { useState, useRef } from 'react';
-import { IconButton, Snackbar } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import React, { useState, useRef } from 'react'
+import { IconButton, Snackbar } from '@mui/material'
+import MuiAlert from '@mui/material/Alert'
+import PhotoCamera from '@mui/icons-material/PhotoCamera'
 
 const PhonePictureUpload = ({ onDrop }) => {
-  const [open, setOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const fileInputRef = useRef(null);
+  const [open, setOpen] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const fileInputRef = useRef(null)
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return;
+      return
     }
 
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleFileInputClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click();
+      fileInputRef.current.click()
     }
-  };
+  }
 
   const handleFileChange = (event) => {
-    onDrop(event.target.files);
-    event.target.value = '';
-  };
+    onDrop(event.target.files)
+    event.target.value = ''
+  }
 
   return (
     <div>
@@ -47,7 +47,7 @@ const PhonePictureUpload = ({ onDrop }) => {
         </MuiAlert>
       </Snackbar>
     </div>
-  );
-};
+  )
+}
 
-export default PhonePictureUpload;
+export default PhonePictureUpload

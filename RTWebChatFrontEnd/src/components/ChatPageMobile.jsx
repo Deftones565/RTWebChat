@@ -6,13 +6,16 @@ import { Container, Box, CircularProgress } from '@mui/material'
 import userService from '../services/user'
 import NavBar from './NavBar'
 
-const ChatPage = ({ user, setUser }) => {
+const ChatPageMobile = ({ user, setUser }) => {
   const [selectedFriend, setSelectedFriend] = useState(null)
   const [userList, setUserList] = useState(null)
   const [isWideScreen, setIsWideScreen] = useState(true)
   const [isFriendButtonClicked, setIsFriendButtonClicked] = useState(false)
-  const [isInitial, setIsInitial] = useState(true)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('this is chatPageMobile')
+  }, [])
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 768px)')
@@ -30,28 +33,8 @@ const ChatPage = ({ user, setUser }) => {
     }
   }, [])
 
-  useEffect(() => {
-    console.log('isWideScreen =', isWideScreen)
-    console.log('isFriendButtonClicked =', isFriendButtonClicked)
-    console.log('isItinial =', isInitial)
-    console.log(
-      'friendsList result:',
-      isWideScreen ? 2 : isInitial ? 2 : isFriendButtonClicked ? 0 : 2,
-      '\nMessagingComponent Result:',
-      isWideScreen ? 8 : isInitial ? 0 : isFriendButtonClicked ? 8 : 0
-    )
-  }, [isWideScreen, isFriendButtonClicked, isInitial])
-
   const handleFriendClick = (friend) => {
     setSelectedFriend(friend)
-    setIsInitial(false)
-    if (!isWideScreen) {
-      setIsFriendButtonClicked(!isFriendButtonClicked)
-    }
-  }
-
-  const handleBackButton = () => {
-    setIsInitial(true)
     if (!isWideScreen) {
       setIsFriendButtonClicked(!isFriendButtonClicked)
     }
@@ -79,7 +62,7 @@ const ChatPage = ({ user, setUser }) => {
   }, [navigate])
 
   return (
-    <Box style={{ display: 'flex', width: '100vw', height: isWideScreen ? '100vh' : '93vh' }}>
+    <Box style={{ display: 'flex', width: '100vw', height: '100vh' }}>
       {!userList || !user.token ? (
         <Box
           display="flex"
@@ -98,22 +81,17 @@ const ChatPage = ({ user, setUser }) => {
             height: '100%',
           }}
         >
-          <NavBar
-            user={user}
-            setUser={setUser}
-            handleBackButton={handleBackButton}
-            isWideScreen={isWideScreen}
-          />
+          <NavBar user={user} setUser={setUser} />
           <Box
             style={{
               display: 'flex',
-              flex: 1,
+              flex: '1',
               overflow: 'hidden',
             }}
           >
             <Box
               style={{
-                flex: isWideScreen || isInitial ? 2 : isFriendButtonClicked ? 0 : 2,
+                flex: isFriendButtonClicked ? 2 : 0,
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'auto',
@@ -126,20 +104,28 @@ const ChatPage = ({ user, setUser }) => {
             </Box>
             <Box
               style={{
-                flex: isWideScreen || isFriendButtonClicked ? 8 : isInitial ? 0 : 0,
+                flex: isFriendButtonClicked? 8 : 1,
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                overflow: 'auto'
               }}
             >
-              {selectedFriend && (
-                <MessagingComponent
-                  user={user}
-                  setUser={setUser}
-                  id={selectedFriend.id}
-                />
-              )}
+              <Box
+                style={{
+                  flex: 1,
+                  overflow: 'auto',
+                  display: 'block',
+                }}
+              >
+                <Outlet />
+                {selectedFriend && (
+                  <MessagingComponent
+                    user={user}
+                    setUser={setUser}
+                    id={selectedFriend.id}
+                  />
+                )}
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -148,4 +134,4 @@ const ChatPage = ({ user, setUser }) => {
   )
 }
 
-export default ChatPage
+export default ChatPageMobile

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 import {
   AppBar,
   Button,
@@ -10,73 +10,72 @@ import {
   TextField,
   Toolbar,
   Typography,
-} from "@mui/material";
-import loginService from "../services/login";
-import roomService from "../services/room";
-import userService from "../services/user";
-import { useNavigate } from "react-router-dom";
+} from '@mui/material'
+import loginService from '../services/login'
+import roomService from '../services/room'
+import userService from '../services/user'
+import { useNavigate } from 'react-router-dom'
 
-const NavBar = ({ user, setUser }) => {
-  const [openSignInDialog, setOpenSignInDialog] = useState(false);
-  const [password, setPassword] = useState("");
-  const [isCreateAccount, setIsCreateAccount] = useState(false);
-  const [username, setUsername] = useState("");
-  const navigate = useNavigate("/login");
+const NavBar = ({ user, setUser, handleBackButton, isInital, isWideScreen }) => {
+  const [openSignInDialog, setOpenSignInDialog] = useState(false)
+  const [password, setPassword] = useState('')
+  const [isCreateAccount, setIsCreateAccount] = useState(false)
+  const [username, setUsername] = useState('')
+  const navigate = useNavigate('/login')
 
   const createUser = async () => {
     const newUser = {
       username,
       password,
-    };
-    try {
-      await userService.create(newUser);
-      setPassword("");
-      setUsername("");
-    } catch (error) {
-      console.error(error);
     }
-  };
+    try {
+      await userService.create(newUser)
+      setPassword('')
+      setUsername('')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const signOut = () => {
-    console.log("signOut Happening");
-    window.localStorage.clear();
+    console.log('signOut Happening')
+    window.localStorage.clear()
     window.location.reload()
-    setUser(null);
-  };
+    setUser(null)
+  }
   const signIn = async () => {
-    console.log("some bad shit");
+    console.log('some bad shit')
     const res = await loginService.login({
       username: username,
       password: password,
-    });
-    console.log(res.token);
+    })
+    console.log(res.token)
     if (res.token) {
       window.localStorage.setItem(
-        "loggedChatAppUser",
+        'loggedChatAppUser',
         JSON.stringify(res.token)
-      );
-      setCurrentUser(false);
+      )
     } else {
-      console.log("no token");
+      console.log('no token')
     }
-    setPassword("");
-    setUsername("");
-  };
+    setPassword('')
+    setUsername('')
+  }
 
   const handleOpenSignInDialog = () => {
-    setOpenSignInDialog(true);
-    setIsCreateAccount(false);
-  };
+    setOpenSignInDialog(true)
+    setIsCreateAccount(false)
+  }
 
   const handleOpenCreateAccountDialog = () => {
-    setOpenSignInDialog(true);
-    setIsCreateAccount(true);
-  };
+    setOpenSignInDialog(true)
+    setIsCreateAccount(true)
+  }
 
   const handleCloseSignInDialog = () => {
-    setOpenSignInDialog(false);
-    setIsCreateAccount(false);
-  };
+    setOpenSignInDialog(false)
+    setIsCreateAccount(false)
+  }
 
   return (
     <>
@@ -97,12 +96,21 @@ const NavBar = ({ user, setUser }) => {
               Sign Out
             </Button>
           )}
+          {!isWideScreen ? (
+            <Button color='inherit' onClick={handleBackButton}>
+              Back
+            </Button>
+          ): (
+            null
+          )
+
+          }
         </Toolbar>
       </AppBar>
 
       <Dialog open={openSignInDialog} onClose={handleCloseSignInDialog}>
         <DialogTitle>
-          {isCreateAccount ? "Create Account" : "Sign In"}
+          {isCreateAccount ? 'Create Account' : 'Sign In'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -128,12 +136,12 @@ const NavBar = ({ user, setUser }) => {
             color="primary"
             onClick={isCreateAccount ? createUser : signIn}
           >
-            {isCreateAccount ? "Create Account" : "Sign In"}
+            {isCreateAccount ? 'Create Account' : 'Sign In'}
           </Button>
         </DialogActions>
       </Dialog>
     </>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar
