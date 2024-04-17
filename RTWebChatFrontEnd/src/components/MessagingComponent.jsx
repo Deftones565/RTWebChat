@@ -37,7 +37,7 @@ const MessagingComponent = ({ user, id, setUser }) => {
 
     return () => {
       if (socket.current) {
-        console.log('umount brah')
+        console.log('unmounting component')
         socket.current.close()
       }
     }
