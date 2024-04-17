@@ -44,7 +44,6 @@ const NavBar = ({ user, setUser, handleBackButton, isInital, isWideScreen }) => 
     setUser(null)
   }
   const signIn = async () => {
-    console.log('some bad shit')
     const res = await loginService.login({
       username: username,
       password: password,
